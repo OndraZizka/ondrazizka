@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<metadata>
+  <groupId>cz.dynawest.third.pircbot</groupId>
+  <artifactId>PircBot</artifactId>
+  <version>1.5.0</version>
+  <versioning>
+    <versions>
+      <version>1.5.0</version>
+    </versions>
+    <lastUpdated>20100327084809</lastUpdated>
+  </versioning>
+</metadata>
