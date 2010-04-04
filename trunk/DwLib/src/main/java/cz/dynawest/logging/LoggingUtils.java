@@ -28,7 +28,8 @@ public class LoggingUtils
 
 
   /** Sets up logging. */
-  public static void initLogging( String filePath ) {
+  public static void initLogging( String filePath ){
+
     boolean wasFromSysProp = true;
     String logConfigFile = System.getProperty("java.util.logging.config.file");
     if( logConfigFile == null ){
@@ -38,21 +39,23 @@ public class LoggingUtils
 
     try {
       InputStream is;
-      if( logConfigFile.startsWith("#") )
+      if( logConfigFile.startsWith("#") ){
         is = LoggingUtils.class.getResourceAsStream( logConfigFile.substring(1) );
         // "Use getClass().getClassLoader().findResource("path") instead."
-      else
+      }else{
         is = new FileInputStream(logConfigFile);
+      }
 
 			log.info("Loading logging conf from: "+logConfigFile + (!wasFromSysProp ? "" : " (set in sys var java.util.logging.config.file)") );
       if( is == null ){
-        log.severe("Log config file not found: "+logConfigFile+ "  Using LoggingUtils' default.");
+        log.warning("Log config file not found: "+logConfigFile+ "  Using LoggingUtils' default.");
+        logConfigFile = DW_DEFAULT_PROPS_PATH;
         is = LoggingUtils.class.getResourceAsStream( DW_DEFAULT_PROPS_PATH );
       }
-      else{
-        LogManager.getLogManager().readConfiguration( is );
-      }
-    }catch(IOException ex){
+
+      LogManager.getLogManager().readConfiguration( is );
+    }
+    catch(IOException ex){
       System.err.println("Error loading logging conf from ["+logConfigFile+"]. Using JDK's default.");
     }
   }
