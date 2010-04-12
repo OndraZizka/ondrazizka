@@ -3,7 +3,7 @@ package cz.dynawest.wicket.chat;
 
 import java.util.ArrayList;
 import java.util.List;
-import org.apache.wicket.Page;
+import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 
@@ -11,7 +11,7 @@ import org.apache.wicket.markup.html.list.ListView;
  *
  * @author Ondrej Zizka
  */
-public class ChatPage extends Page {
+public class ChatPage extends WebPage {
 
 	private List<String> messages = new ArrayList();
 

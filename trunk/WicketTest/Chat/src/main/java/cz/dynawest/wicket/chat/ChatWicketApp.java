@@ -12,7 +12,7 @@ public class ChatWicketApp extends WebApplication {
 
 	@Override
 	public Class<? extends Page> getHomePage() {
-		return new ChatPage();
+		return ChatPage.class;
 	}
 
 }// class

@@ -11,7 +11,7 @@
 
     <servlet>
         <servlet-name>wicket</servlet-name>
-        <servlet-class>wicket.protocol.http.WicketServlet</servlet-class>
+        <servlet-class>org.apache.wicket.protocol.http.WicketServlet</servlet-class>
         <init-param>
           <param-name>applicationClassName</param-name>
           <param-value>cz.dynawest.wicket.chat.ChatWicketApp</param-value>
@@ -25,7 +25,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>wicket</servlet-name>
-        <url-pattern>/chat/*</url-pattern>
+        <url-pattern>/*</url-pattern>
     </servlet-mapping>
 
 </web-app>
