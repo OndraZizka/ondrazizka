@@ -1,0 +1,698 @@
+<project name="TS top level" default="usage">
+
+  <!-- $Id: ts-top-level-build.xml 1183 2007-03-27 22:38:00Z tdiesler $ -->
+
+  <!-- JBoss modifications
+
+    1. replace ri.java.endorsed.dirs with ${ts.home}/jboss/lib/endorsed
+
+  -->
+
+  <!-- Do NOT load ts.jte.  It's already loaded by TSBuildListener
+   Besides properties in bin/ts.jte, the following properties are also
+   defined by TSBuildListener:
+   ts.home
+   class.dir: defined as ${ts.home}/classes
+   vehicle.dir: defined as com/sun/ts/tests/common/vehicle
+   dist.dir: defined as ${ts.home}/dist
+   -->
+
+  <target name="usage">
+    <echo message="If you run tsant in $${ts.home}/bin, use the following targets:"/>
+    <echo message="gui build.all build.all.tests build.all.smoke clean.all start.rmiiiop.server ts.version usage"/>
+    <echo message="-"/>
+    <echo message="If you run tsant in a test directory, use the following targets:"/>
+    <echo message="gui build clean runclient usage ld lld lc llc"/>
+    <echo message="-"/>
+    <echo message="ld lld lc llc list the content of corresponding dist dir and class dir."/>
+    <echo message="-"/>
+    <echo message="To run a single test in a leaf directory:"/>
+    <echo message="tsant -Dtest=&lt;twobeanTest2&gt; [-Dtest.client=&lt;TwoBeanClient.java&gt;] runclient"/>
+  </target>
+
+  <target name="build.all" depends="build.all.jars,build.all.tests"/>
+
+  <target name="generate.coverage.numbers">
+    <ant antfile="coverage-build.xml" dir="${ts.home}/bin" target="all"/>
+  </target>
+
+  <target name="build.all.smoke" depends="build.all.jars">
+    <ant antfile="smoke.xml" dir="${ts.home}/src/com/sun/ts/tests" target="build"/>
+  </target>
+
+  <target name="build.all.tests">
+    <property name="all.test.dir" value="
+      com/sun/ts/tests/jaxp,
+      com/sun/ts/tests/jacc,
+      com/sun/ts/tests/saaj,
+      com/sun/ts/tests/jaxrpc,
+      com/sun/ts/tests/webservices,
+      com/sun/ts/tests/jmx,
+      com/sun/ts/tests/compat12,
+      com/sun/ts/tests/compat13,
+      com/sun/ts/tests/signaturetest,
+      com/sun/ts/tests/interop,
+      com/sun/ts/tests/integration,
+      com/sun/ts/tests/ejb,
+      com/sun/ts/tests/common,
+      com/sun/ts/tests/jdbc,
+      com/sun/ts/tests/connector,
+      com/sun/ts/tests/jms,
+      com/sun/ts/tests/xa,
+      com/sun/ts/tests/servlet,
+      com/sun/ts/tests/jsp,
+      com/sun/ts/tests/appclient,
+      com/sun/ts/tests/javamail,
+      com/sun/ts/tests/rmiiiop,
+      com/sun/ts/tests/assembly,
+      com/sun/ts/tests/jta,
+      com/sun/ts/tests/samples,
+      com/sun/ts/tests/j2eetools/mgmt,
+      com/sun/ts/tests/j2eetools/deploy,
+      com/sun/ts/tests/jaxr"/>
+
+    <elementappend original="${all.test.dir}" suffix="**/*.java" property="all.java.file"/>
+
+    <property name="rmiiiop.stub.dir"
+      value="org/omg/stub/com/sun/ts/tests/rmiiiop"/>
+
+    <echo message="First building jaxrpc common directories separately..."/>
+    <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests/jaxrpc/common" todo="build"/>
+    <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests/jaxrpc/wsi/constants" todo="build"/>
+    <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests/jaxrpc/wsi/requests" todo="build"/>
+    <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests/jaxrpc/wsi/utils" todo="build"/>
+    <dosubdirs srcdir="${ts.home}/src/com/sun/ts/tests/jaxrpc/sharedclients" todo="build"/>
+
+    <echo message="Compiling:${all.java.file}"/>
+    <javac fork="true" srcdir="${ts.home}/src"
+      destdir="${class.dir}"
+      includes="${all.java.file}, ${rmiiiop.stub.dir}/**/*.java"
+      excludes="com/sun/ts/tests/compat12/**/*.java, com/sun/ts/tests/compat13/**/*.java, com/sun/ts/tests/interop/jaxrpc/**/*.java,com/sun/ts/tests/jaxrpc/common/JAXRPCServlet.java,com/sun/ts/tests/jaxrpc/common/JAXRPCContextListener.java"
+      memoryInitialSize="100m"
+      memoryMaximumSize="400m"
+      debug="on"
+      deprecation="off">
+      <classpath>
+        <pathelement path="${ts.classpath}"/>
+      </classpath>
+    </javac>
+    <dosubdirs srcdir="${ts.home}/src" todo="package" includes="${all.test.dir}"/>
+  </target>
+
+  <target name="build" depends="compile">
+    <dosubdirs srcdir="${user.dir}" todo="package"/>
+  </target>
+
+  <target name="compile">
+    <javac fork="true" srcdir="${ts.home}/src"
+      destdir="${class.dir}"
+      includes="${pkg.dir}/**/*.java,com/sun/ts/tests/common/webclient/**/*.java"
+      excludes="**/interop/jaxrpc/**,com/sun/ts/tests/jaxrpc/common/JAXRPCServlet.java,com/sun/ts/tests/jaxrpc/common/JAXRPCContextListener.java"
+      memoryMaximumSize="400m"
+      debug="on"
+      deprecation="on">
+      <classpath>
+        <pathelement path="${ts.classpath}"/>
+      </classpath>
+    </javac>
+  </target>
+
+
+  <target name="ts.version">
+    <property file="version"/>
+    <condition property="build.string" value="build ${ts.build}">
+      <not>
+        <or>
+          <equals arg1="${ts.build}" arg2="$${ts.build}"/>
+          <equals arg1="${ts.build}" arg2=""/>
+        </or>
+      </not>
+    </condition>
+    <condition property="build.string" value="">
+      <or>
+        <equals arg1="${ts.build}" arg2="$${ts.build}"/>
+        <equals arg1="${ts.build}" arg2=""/>
+      </or>
+    </condition>
+    <echo message="${ts.version} ${build.string}"/>
+  </target>
+
+  <target name="set.prior.status">
+    <condition property="prior.status.isset">
+      <not>
+        <or>
+          <equals arg1="${priorStatus}" arg2="$${priorStatus}"/>
+          <equals arg1="${priorStatus}" arg2=""/>
+        </or>
+      </not>
+    </condition>
+  </target>
+
+  <target name="prior.status" depends="set.prior.status">
+    <condition property="prior.status" value="${priorStatus}">
+      <istrue value="${prior.status.isset}"/>
+    </condition>
+    <property name="prior.status" value="pass,fail,error,notRun"/>
+  </target>
+
+  <target name="check.results.mode" depends="prior.status">
+    <!-- must be set to backup, overwrite or append -->
+    <echo message="prior.status = ${prior.status}"/>
+    <condition property="report.mode" value="append">
+      <istrue value="${prior.status.isset}"/>
+    </condition>
+    <condition property="report.mode" value="overwrite">
+      <and>
+        <equals arg1="${if.existing.work.report.dirs}" arg2="auto"/>
+        <available file="${ts.home}/install" type="dir"/>
+      </and>
+    </condition>
+    <condition property="report.mode" value="append">
+      <equals arg1="${if.existing.work.report.dirs}" arg2="auto"/>
+    </condition>
+    <property name="report.mode" value="${if.existing.work.report.dirs}"/>
+    <echo message="Results Mode is ${report.mode}"/>
+  </target>
+
+  <!-- === internal targets to manage javatest work.dir and report.dir. === -->
+  <!-- === See ts.jte for instruction                                   === -->
+  <target name="prepare.work.report.dirs"
+    depends="check.results.mode, check.existing.dirs, delete.existing.dirs, backup.work.dir, backup.report.dir, set.report.arg">
+    <mkdir dir="${work.dir}"/>
+    <property name="report.arg" value=""/>
+  </target>
+
+  <target name="check.existing.dirs">
+    <condition property="overwrite.existing.dirs">
+      <equals arg1="${report.mode}" arg2="overwrite"/>
+    </condition>
+    <condition property="no.report">
+      <or>
+        <equals arg1="${report.dir}" arg2="$${report.dir}"/>
+        <equals arg1="${report.dir}" arg2="none"/>
+        <equals arg1="${report.dir}" arg2="no"/>
+      </or>
+    </condition>
+    <condition property="backup.existing.work.dir">
+      <and>
+        <available file="${work.dir}" type="dir"/>
+        <equals arg1="${report.mode}" arg2="backup"/>
+      </and>
+    </condition>
+    <condition property="backup.existing.report.dir">
+      <and>
+        <available file="${report.dir}" type="dir"/>
+        <equals arg1="${report.mode}" arg2="backup"/>
+      </and>
+    </condition>
+  </target>
+
+  <target name="delete.existing.dirs" if="overwrite.existing.dirs"
+    depends="check.existing.dirs">
+    <delete failonerror="no" includeEmptyDirs="yes">
+      <fileset dir="${work.dir}"/>
+    </delete>
+  </target>
+
+  <target name="backup.work.dir" if="backup.existing.work.dir"
+    depends="check.existing.dirs">
+    <move todir="${work.dir}_${TSTAMP}_${DSTAMP}_bak" preservelastmodified="yes"
+      overwrite="yes" includeEmptyDirs="yes" failonerror="no">
+      <fileset dir="${work.dir}"/>
+    </move>
+  </target>
+
+  <target name="backup.report.dir" if="backup.existing.report.dir"
+    unless="no.report" depends="check.existing.dirs">
+    <move todir="${report.dir}_${TSTAMP}_${DSTAMP}_bak" preservelastmodified="yes"
+      overwrite="yes" includeEmptyDirs="yes" failonerror="no">
+      <fileset dir="${report.dir}"/>
+    </move>
+  </target>
+
+  <target name="set.report.arg" unless="no.report" depends="check.existing.dirs">
+    <property name="report.arg" value="-writereport ${report.dir}"/>
+  </target>
+  <!-- === end internal targets to manage javatest work.dir and report.dir. === -->
+
+  <target name="get.client" if="test" unless="test.client">
+    <getclient srcdir="${ts.home}/src/${pkg.dir}"/>
+  </target>
+  <target name="check.selected.test" if="test" depends="get.client">
+    <property name="one.test" value="${test.client}#${test}"/>
+  </target>
+  <target name="no.selected.test" unless="test">
+    <property name="one.test" value=""/>
+  </target>
+  <target name="check.java.options" if="env.JAVA_OPTIONS">
+    <property name="java.options" value="${env.JAVA_OPTIONS}"/>
+  </target>
+  <target name="no.java.options" unless="env.JAVA_OPTIONS">
+    <property name="java.options" value=""/>
+  </target>
+
+  <target name="translatepath">
+    <translatepath propname="ts.home"/>
+    <translatepath propname="j2ee.home.ri"/>
+    <translatepath propname="j2ee.home"/>
+    <translatepath propname="ri.java.endorsed.dirs"/>
+  </target>
+
+  <target name="runclient" depends="init, prepare.work.report.dirs, check.selected.test, no.selected.test,
+    check.java.options, no.java.options, translatepath">
+
+    <!-- create the needed sun-acc.xml for the RI appclient -->
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="config.cts"/>
+
+    <condition property="tests.string" value="${multiple.tests}">
+      <not>
+        <or>
+          <equals arg1="${multiple.tests}" arg2="$${multiple.tests}"/>
+          <equals arg1="${multiple.tests}" arg2=""/>
+        </or>
+      </not>
+    </condition>
+    <condition property="tests.string" value="${ts.home}/src/${pkg.dir}/${one.test}">
+      <or>
+        <equals arg1="${multiple.tests}" arg2="$${multiple.tests}"/>
+        <equals arg1="${multiple.tests}" arg2=""/>
+      </or>
+    </condition>
+    <translatepath propname="tests.string" type="initialfile"/>
+    <condition property="tests.arg" value="-tests ${tests.string}">
+      <not>
+        <equals arg1="${tests.string}" arg2=""/>
+      </not>
+    </condition>
+    <condition property="tests.arg" value="">
+      <equals arg1="${tests.string}" arg2=""/>
+    </condition>
+
+    <java classname="com.sun.javatest.tool.Main" failonerror="yes" fork="yes">
+      <classpath>
+        <pathelement path="${ts.harness.classpath}"/>
+      </classpath>
+      <sysproperty key="java.compiler" value="NONE"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host}"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port}"/>
+      <sysproperty key="com.sun.ejb.home" value="${j2ee.home}"/>
+      <sysproperty key="TS_HOME" value="${ts.home}"/>
+      <sysproperty key="ts.home" value="${ts.home}"/>
+      <sysproperty key="J2EE_HOME" value="${j2ee.home}"/>
+      <sysproperty key="JAVA_HOME" value="${java.home}"/>
+      <sysproperty key="cts.jtroutput" value="true"/>
+      <sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
+      <sysproperty key="windir" value="${env.windir}"/>
+      <sysproperty key="SYSTEMROOT" value="${env.SystemRoot}"/>
+      <sysproperty key="javatest.security.allowPropertiesAccess" value="true"/>
+      <sysproperty key="java.security.policy" value="${ts.home}/bin/harness.policy"/>
+      <sysproperty key="ORB_HOST" value="${orb.host}"/>
+      <sysproperty key="ORB_PORT" value="${orb.port}"/>
+      <sysproperty key="J2EE_HOME_RI" value="${j2ee.home.ri}"/>
+      <sysproperty key="ORB_HOST_RI" value="${orb.host.ri}"/>
+      <sysproperty key="ORB_PORT_RI" value="${orb.port.ri}"/>
+      <sysproperty key="rmiiiop.http.server.host" value="${rmiiiop.http.server.host}"/>
+      <sysproperty key="rmiiiop.http.server.port" value="${rmiiiop.http.server.port}"/>
+      <sysproperty key="deliverable.class" value="${deliverable.class}"/>
+      <sysproperty key="java.endorsed.dirs" value="${ts.home}/jboss/lib/endorsed"/>
+      <sysproperty key="com.sun.enterprise.home" value="${j2ee.home.ri}"/>
+      <sysproperty key="com.sun.aas.installRoot" value="${j2ee.home.ri}"/>
+      <sysproperty key="DEPLOY_DELAY_IN_MINUTES" value="${deploy.delay.in.minutes}"/>
+      <arg line=" -EsysProps"/>
+      <arg line=" -batch"/>
+      <arg line=" -testsuite ${ts.home}/src"/>
+      <arg line=" -workDir ${work.dir}"/>
+      <arg line=" -envFiles ${ts.home}/bin/ts.jte"/>
+      <arg line=" -env ${ts.env}"/>
+      <arg line=" -excludeList ${ts.home}/bin/ts.jtx"/>
+      <arg line=" -timeoutFactor ${javatest.timeout.factor}"/>
+      <arg line=" -priorStatus ${prior.status}"/>
+      <arg line=" ${tests.arg}"/>
+      <arg line=" -runtests ${report.arg}"/>
+      <jvmarg value="-Xms32m"/>
+      <jvmarg value="-Xmx96m"/>
+      <!--jvmarg line="-Xdebug -Xnoagent -Djava.compiler=NONE -Xrunjdwp:transport=dt_shmem,server=y,suspend=n,address=harness"/-->
+    </java>
+  </target>
+
+  <target name="gui" depends="check.java.options, no.java.options, translatepath">
+
+    <!-- create the needed sun-acc.xml for the RI appclient -->
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="config.cts"/>
+
+    <java classname="com.sun.javatest.tool.Main" failonerror="yes" fork="yes" dir="${ts.home}/src">
+      <classpath>
+        <pathelement path="${ts.harness.classpath}"/>
+      </classpath>
+      <sysproperty key="java.compiler" value="NONE"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host}"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port}"/>
+      <sysproperty key="com.sun.ejb.home" value="${j2ee.home}"/>
+      <sysproperty key="TS_HOME" value="${ts.home}"/>
+      <sysproperty key="ts.home" value="${ts.home}"/>
+      <sysproperty key="J2EE_HOME" value="${j2ee.home}"/>
+      <sysproperty key="JAVA_HOME" value="${java.home}"/>
+      <sysproperty key="cts.jtroutput" value="false"/>
+      <sysproperty key="windir" value="${env.windir}"/>
+      <sysproperty key="SYSTEMROOT" value="${env.SystemRoot}"/>
+      <sysproperty key="javatest.security.allowPropertiesAccess" value="true"/>
+      <sysproperty key="java.security.policy" value="${ts.home}/bin/harness.policy"/>
+      <sysproperty key="ORB_HOST" value="${orb.host}"/>
+      <sysproperty key="ORB_PORT" value="${orb.port}"/>
+      <sysproperty key="J2EE_HOME_RI" value="${j2ee.home.ri}"/>
+      <sysproperty key="ORB_HOST_RI" value="${orb.host.ri}"/>
+      <sysproperty key="ORB_PORT_RI" value="${orb.port.ri}"/>
+      <sysproperty key="rmiiiop.http.server.host" value="${rmiiiop.http.server.host}"/>
+      <sysproperty key="rmiiiop.http.server.port" value="${rmiiiop.http.server.port}"/>
+      <sysproperty key="deliverable.class" value="${deliverable.class}"/>
+      <sysproperty key="java.endorsed.dirs" value="${ts.home}/jboss/lib/endorsed"/>
+      <sysproperty key="com.sun.enterprise.home" value="${j2ee.home.ri}"/>
+      <sysproperty key="com.sun.aas.installRoot" value="${j2ee.home.ri}"/>
+      <sysproperty key="DEPLOY_DELAY_IN_MINUTES" value="${deploy.delay.in.minutes}"/>
+      <arg line="-EsysProps"/>
+      <jvmarg value="-Xms128m"/>
+      <jvmarg value="-Xmx512m"/>
+      <jvmarg value="-XX:MaxPermSize=128m"/>
+      <!--jvmarg line="-Xdebug -Xrunjdwp:transport=dt_socket,address=9000,server=y,suspend=n"/-->
+    </java>
+  </target>
+
+  <!-- target to generate test report for the complete testsuite or selected -->
+  <!-- test directories, based on current work.dir.  For example,            -->
+  <!-- tsant report                                      complete testsuite  -->
+  <!-- tsant report -Dreport.for=com/sun/ts/tests/samples      samples only  -->
+  <!-- tsant report -Df.existing.work.report.dirs=backup  preserve existing  -->
+  <target name="report" depends="init, backup.report.dir, set.report.arg">
+    <condition property="report.for.arg" value="-tests ${report.for}">
+      <isset property="report.for"/>
+    </condition>
+    <property name="report.for.arg" value=""/>
+    <java classname="com.sun.javatest.tool.Main" failonerror="yes" fork="yes" maxMemory="256m">
+      <classpath>
+        <pathelement location="${ts.home}/lib/javatest.jar"/>
+        <pathelement location="${ts.home}/lib/tsharness.jar"/>
+        <pathelement location="${ts.home}/lib/cts.jar"/>
+      </classpath>
+      <sysproperty key="TS_HOME" value="${ts.home}"/>
+      <sysproperty key="ts.home" value="${ts.home}"/>
+      <sysproperty key="J2EE_HOME" value="${j2ee.home}"/>
+      <sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
+      <sysproperty key="javatest.security.allowPropertiesAccess" value="true"/>
+      <sysproperty key="java.security.policy" value="${ts.home}/bin/harness.policy"/>
+      <sysproperty key="deliverable.class" value="${deliverable.class}"/>
+      <arg line=" -EsysProps"/>
+      <arg line=" -batch"/>
+      <arg line=" -testsuite ${ts.home}/src"/>
+      <arg line=" -workDir ${work.dir}"/>
+      <arg line=" -envFiles ${ts.home}/bin/ts.jte"/>
+      <arg line=" -env ${ts.env}"/>
+      <arg line=" -excludeList ${ts.home}/bin/ts.jtx"/>
+      <arg line=" ${report.for.arg}"/>
+      <arg line="  ${report.arg}"/>
+    </java>
+  </target>
+
+  <target name="clean">
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${class.dir}/${pkg.dir}" excludes="PlaceHolder"/>
+    </delete>
+    <delete failonerror="false" includeEmptyDirs="true">
+      <fileset dir="${dist.dir}/${pkg.dir}" excludes="PlaceHolder"/>
+    </delete>
+  </target>
+
+  <target name="clean.all.error.msg">
+    <property name="msg" value="Cleanup of the classes/dist directory is not allowed"/>
+  </target>
+
+  <target name="clean.all" depends="clean.all.error.msg,check.bin.workspace.file" if="bin.workspace.file.exists">
+    <ant antfile="workspace.xml" dir="${ts.home}/bin" target="clean.classes"/>
+    <ant antfile="workspace.xml" dir="${ts.home}/bin" target="clean.dist"/>
+  </target>
+
+  <target name="start.rmiiiop.server">
+    <java classname="com.sun.ts.tests.rmiiiop.ee.standalone.RMIIIOPServer" fork="yes" failonerror="yes"
+      classpath="${ts.run.classpath}:${class.dir}">
+      <sysproperty key="java.security.policy"
+        value="${ts.home}/bin/java.policy"/>
+      <arg line="-v"/>
+      <arg line="-p ${rmiiiop.http.server.port}"/>
+    </java>
+  </target>
+
+  <target name="start.standard.deployment.server" depends="init">
+    <java classname="com.sun.ts.lib.deliverable.cts.deploy.StandardDeployment14Server"
+      fork="yes"
+      classpath="${ts.standard.deployment.server.classpath}">
+      <sysproperty key="java.security.policy" value="${ts.home}/bin/harness.poli
+cy"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialHost" value="${orb.host.ri}"/>
+      <sysproperty key="org.omg.CORBA.ORBInitialPort" value="${orb.port.ri}"/>
+      <sysproperty key="com.sun.enterprise.home" value="${j2ee.home.ri}"/>
+      <sysproperty key="cts.harness.debug" value="${cts.harness.debug}"/>
+      <sysproperty key="deliverable.class" value="${deliverable.class}"/>
+      <sysproperty key="java.compiler" value="NONE"/>
+      <sysproperty key="TS_HOME" value="${ts.home}"/>
+      <sysproperty key="ts.home" value="${ts.home}"/>
+      <sysproperty key="J2EE_HOME" value="${j2ee.home}"/>
+      <sysproperty key="JAVA_HOME" value="${java.home}"/>
+      <sysproperty key="windir" value="${env.windir}"/>
+      <sysproperty key="SYSTEMROOT" value="${env.SystemRoot}"/>
+      <sysproperty key="javatest.security.allowPropertiesAccess" value="true"/>
+      <sysproperty key="java.endorsed.dirs" value="${ri.java.endorsed.dirs}"/>
+      <sysproperty key="com.sun.enterprise.home" value="${j2ee.home.ri}"/>
+      <sysproperty key="com.sun.aas.installRoot" value="${j2ee.home.ri}"/>
+    </java>
+  </target>
+
+  <target name="init">
+    <tstamp/>
+    <property name="env.HARNESS_DEBUG" value="false"/>
+    <property name="cts.harness.debug" value="${env.HARNESS_DEBUG}"/>
+
+    <condition property="ts.env" value="ts_win32">
+      <and>
+        <os family="windows"/>
+      </and>
+    </condition>
+    <condition property="ts.env" value="ts_unix">
+      <and>
+        <os family="unix"/>
+      </and>
+    </condition>
+
+  </target>
+
+  <!-- Tasks for managing ts specific jar.  These automatically call
+  the pkg target in the src/com/sun/ts/lib/build.xml file  -->
+  <!-- ts specific jar (in this case cts.jar) will be created in ts.home/lib
+  and must be copied to ts.home/install/j2ee/lib.
+  If you are builing it in the workspace, then you must sccs edit ts.home/
+  install/j2ee/lib/cts.jar prior to using this target.  -->
+
+  <target name="does.bin.workspace.file.exist">
+    <available file="${ts.home}/bin/workspace.xml" type="file" property="bin.workspace.file.exists"/>
+  </target>
+  <target name="check.bin.workspace.file" depends="does.bin.workspace.file.exist" unless="bin.workspace.file.exists">
+    <echo message="WARNING: The workspace file (${ts.home}/bin/workspace.xml) does not exist - ${msg}"/>
+  </target>
+
+  <target name="tslib.error.msg">
+    <property name="msg" value="building of ${ts.home}/lib/ctstck.jar is not allowed"/>
+  </target>
+
+  <target name="tslib" depends="tslib.error.msg,check.bin.workspace.file" if="bin.workspace.file.exists">
+    <tstamp/>
+    <ant antfile="workspace.xml" dir="${ts.home}/bin" target="build"/>
+  </target>
+
+  <target name="tsharness">
+    <ant antfile="build.xml" dir="${ts.home}/src/com/sun/ts/lib" target="build"/>
+  </target>
+
+  <target name="build.all.jars" depends="tsharness,tslib"/>
+
+  <target name="verify">
+    <verify/>
+  </target>
+
+
+  <!--  Targets for configuring the J2EE RI and the J2EE Vendor implementation -->
+
+
+  <target name="config.ri">
+    <record name="config_ri.log" action="start"/>
+    <antcall target="copy.dml.file">
+      <param name="dml.file" value="${db.dml.file.ri}"/>
+      <param name="target.dml.file" value="tssql.stmt.ri"/>
+    </antcall>
+
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="config.ri"/>
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="restart.server"/>
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="ri.perms"/>
+    <record name="config_ri.log" action="stop"/>
+  </target>
+
+  <target name="clean.ri">
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="clean.ri"/>
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="restart.server"/>
+  </target>
+
+  <target name="config.vi">
+    <record name="config_vi.log" action="start"/>
+    <antcall target="copy.dml.file">
+      <param name="dml.file" value="${db.dml.file}"/>
+      <param name="target.dml.file" value="tssql.stmt"/>
+    </antcall>
+
+    <ant antfile="j2ee_vi.xml" dir="${ts.home}/bin/xml" target="config.vi"/>
+    <antcall target="config.jmx"/>
+    <ant antfile="j2ee_vi.xml" dir="${ts.home}/bin/xml" target="vi.perms"/>
+    <record name="config_vi.log" action="stop"/>
+  </target>
+
+  <target name="clean.vi">
+    <ant antfile="j2ee_vi.xml" dir="${ts.home}/bin/xml" target="clean.vi"/>
+  </target>
+
+  <property name="jmx.tck.source" value="${ts.home}/src/com/sun/ts/tests/jmx/tck_source"/>
+
+  <target name="jmx.info.positive" if="jmx.available">
+    <echo message="The JMX directory ${jmx.tck.source}/mlet/httpRoot was found, JMX configged."
+      file="config_vi.log" append="true"/>
+    <echo message="The JMX directory ${jmx.tck.source}/mlet/httpRoot was found, JMX configged."/>
+  </target>
+
+  <target name="jmx.info.negative" unless="jmx.available">
+    <echo message="The JMX directory ${jmx.tck.source}/mlet/httpRoot was NOT found."
+      file="config_vi.log" append="true"/>
+    <echo message="The JMX directory ${jmx.tck.source}/mlet/httpRoot was NOT found."/>
+  </target>
+
+  <target name="check.jmx">
+    <available file="${jmx.tck.source}/mlet/httpRoot" type="dir" property="jmx.available"/>
+    <antcall target="jmx.info.positive"/>
+    <antcall target="jmx.info.negative"/>
+  </target>
+
+  <target name="config.jmx" depends="check.jmx" if="jmx.available">
+    <copy overwrite="yes" todir="${http.doc.root}">
+      <fileset dir="${jmx.tck.source}/mlet/httpRoot"/>
+    </copy>
+  </target>
+
+  <!--
+      Copy the correct dml file to $TS_HOME/bin
+  -->
+  <target name="copy.dml.file">
+    <copy file="${ts.home}/sql/${dml.file}"
+      tofile="${ts.home}/bin/${target.dml.file}" overwrite="yes"/>
+  </target>
+
+
+  <!--
+     Targets for configuring the databases as needed by CTS.
+  -->
+  <target name="init.postgresql">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.postgresql"/>
+  </target>
+  
+  <target name="init.mysql">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.mysql"/>
+  </target>
+  
+  <target name="init.db2">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.db2"/>
+  </target>
+
+  <target name="init.cloudscape">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.cloudscape"/>
+  </target>
+
+  <target name="init.mssqlserver">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.mssqlserver"/>
+  </target>
+
+  <target name="init.mssqlserverDD">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.mssqlserverDD"/>
+  </target>
+
+  <target name="init.mssqlserverInet">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.mssqlserverInet"/>
+  </target>
+
+  <target name="init.oracle">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.oracle"/>
+  </target>
+
+  <target name="init.oracleDD">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.oracleDD"/>
+  </target>
+
+  <target name="init.oracleInet">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.oracleInet"/>
+  </target>
+
+  <target name="init.pointbase">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.pointbase"/>
+  </target>
+
+  <target name="init.sybase">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.sybase"/>
+  </target>
+
+  <target name="init.sybaseInet">
+    <ant antfile="initdb.xml" dir="${ts.home}/bin/xml" target="init.sybaseInet"/>
+  </target>
+
+
+  <target name="modify.jdbc.resources">
+    <antcall target="copy.dml.file">
+      <param name="dml.file" value="${db.dml.file}"/>
+      <param name="target.dml.file" value="tssql.stmt"/>
+    </antcall>
+    <ant antfile="j2ee_vi.xml" dir="${ts.home}/bin/xml" target="modify.jdbc.resources"/>
+  </target>
+
+  <!-- Enable the use of jacc for the app server under test -->
+  <target name="enable.jacc">
+    <ant antfile="j2ee_vi.xml" dir="${ts.home}/bin/xml" target="enable.jacc"/>
+  </target>
+
+  <!-- Disable the use of jacc for the app server under test -->
+  <target name="disable.jacc">
+    <ant antfile="j2ee_vi.xml" dir="${ts.home}/bin/xml" target="disable.jacc"/>
+  </target>
+
+  <!-- Enable the use of csiv2 for the J2EE RI -->
+  <target name="enable.csiv2">
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="enable.csiv2"/>
+  </target>
+
+  <!-- Disable the use of csiv2 for the J2EE RI -->
+  <target name="disable.csiv2">
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="disable.csiv2"/>
+  </target>
+
+  <!-- Disable the TX interoperability on the j2ee RI -->
+  <target name="disable.ri.tx.interop">
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="disable.tx.interop"/>
+  </target>
+
+  <!-- Enable the TX interoperability on the j2ee RI -->
+  <target name="enable.ri.tx.interop">
+    <ant antfile="j2ee_ri.xml" dir="${ts.home}/bin/xml" target="enable.tx.interop"/>
+  </target>
+
+  <!-- Disable the TX interoperability on the appserver under test -->
+  <target name="disable.vi.tx.interop">
+    <ant antfile="j2ee_vi.xml" dir="${ts.home}/bin/xml" target="disable.tx.interop"/>
+  </target>
+
+  <!-- Enable the TX interoperability on the app server under test -->
+  <target name="enable.vi.tx.interop">
+    <ant antfile="j2ee_vi.xml" dir="${ts.home}/bin/xml" target="enable.tx.interop"/>
+  </target>
+
+</project>
+
