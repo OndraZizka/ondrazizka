@@ -1,14 +1,21 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=windows-1250"/>
-    <title>TODO supply a title</title>
+    <title>Wicket Chat demo app</title>
   </head>
   <body>
-    <p>
-      TODO write content
-    </p>
-    <ul wicket:id="messages">
+
+    <ul wicket:id="messagesList">
       <li>Message</li>
     </ul>
+
+    <ul wicket:id="messages">
+      <li wicket:id="messageRep"><span wicket:id="message">Message</span></li>
+    </ul>
+
+    <form xwicket:id="form1">
+      <textarea xwicket:id="message"></textarea>
+      <input type="submit" value="Send"/>
+    </form>
   </body>
 </html>

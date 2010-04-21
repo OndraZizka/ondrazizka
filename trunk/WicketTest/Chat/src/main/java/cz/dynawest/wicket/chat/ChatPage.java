@@ -3,9 +3,13 @@ package cz.dynawest.wicket.chat;
 
 import java.util.ArrayList;
 import java.util.List;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.repeater.RepeatingView;
 
 /**
  *
@@ -17,11 +21,30 @@ public class ChatPage extends WebPage {
 
 	public ChatPage() {
 
-		this.add( new ListView("messages", this.messages) {
+    messages.add("Uh... hi.");
+    messages.add("Korben Dallas!");
+
+    // ListView
+		this.add( new ListView("messagesList", this.messages) {
 			@Override protected void populateItem(ListItem item) {
-				throw new UnsupportedOperationException("Not supported yet.");
+				item.add( new Label("foo"+Math.random(), "FooBar") );
 			}
-		});
+		});/**/
+
+
+    // RepeatingView
+		RepeatingView repeating = new RepeatingView("repeating");
+		add(repeating);
+
+    for( String str : messages ){
+			WebMarkupContainer item = new WebMarkupContainer(repeating.newChildId());
+			repeating.add(item);
+
+      item.add( new Label("message", str) );
+    }
+    
+
+    //this.add( new Form("form1") );
 
 	}
 
