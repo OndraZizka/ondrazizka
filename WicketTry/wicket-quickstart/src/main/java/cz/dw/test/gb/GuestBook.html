@@ -1,0 +1,22 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd">
+<body>
+  <form wicket:id = "commentForm" action="">
+    Add your comment here:
+    <br/>
+    <textarea wicket:id="text" cols="50" rows="3">This is a comment</textarea>
+    <br/>
+    <input type = "submit" value = "Submit"/>
+  </form>
+
+  <div wicket:id="comments">
+    <div>
+        <div wicket:id = "date">1/1/2004</div>
+        <div wicket:id = "text">Comment text goes here.</div>
+    </div>
+  </div>
+
+  <wicket:remove>
+    <p>1/2/2004<br/> More comment text here.</p>
+  </wicket:remove>
+</body>
+</html>
