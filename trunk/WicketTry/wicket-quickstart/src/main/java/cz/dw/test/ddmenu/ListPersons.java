@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.list.ListView;
 
 /**
  *
- * @author Ondøej Žižka
+ * @author Ondrej Zizka
  */
 public class ListPersons extends WebPage {
 

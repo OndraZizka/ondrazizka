@@ -8,7 +8,7 @@ import org.apache.wicket.markup.html.border.BoxBorder;
 
 /**
  *
- * @author Ondøej Žižka
+ * @author Ondrej Zizka
  */
 public class NavomaticBorder extends Border
 {
