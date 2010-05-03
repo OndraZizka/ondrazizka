@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Ondøej Žižka
+ * @author Ondrej Zizka
  */
 public class Person implements Cloneable, Serializable {
 

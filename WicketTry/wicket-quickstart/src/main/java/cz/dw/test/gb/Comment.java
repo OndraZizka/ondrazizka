@@ -7,7 +7,7 @@ import java.util.Date;
 
 /**
  *
- * @author Ondøej Žižka
+ * @author Ondrej Zizka
  */
 public class Comment implements Serializable
 {

@@ -4,7 +4,7 @@ import org.apache.wicket.markup.html.WebPage;
 
 /**
  *
- * @author Ondøej Žižka
+ * @author Ondrej Zizka
  */
 public class Page1 extends WebPage {
 

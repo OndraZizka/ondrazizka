@@ -6,7 +6,7 @@ import org.apache.wicket.model.PropertyModel;
 
 /**
  *
- * @author Ondøej Žižka
+ * @author Ondrej Zizka
  */
 public class CreatePerson extends WebPage {
 
