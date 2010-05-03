@@ -75,17 +75,25 @@
 
 
 	<dependencies>
+    
 		<!--  WICKET DEPENDENCIES -->
 		<dependency>
 			<groupId>org.apache.wicket</groupId>
 			<artifactId>wicket</artifactId>
 			<version>${wicket.version}</version>
 		</dependency>
-		<!--
-			OPTIONAL <dependency> <groupId>org.apache.wicket</groupId>
-			<artifactId>wicket-extensions</artifactId>
-			<version>${wicket.version}</version> </dependency>
+		<!-- OPTIONAL
+      <dependency> <groupId>org.apache.wicket</groupId>	<artifactId>wicket-extensions</artifactId> <version>${wicket.version}</version> </dependency>
 		-->
+
+
+    <!-- Quartz -->
+    <dependency>
+      <groupId>org.quartz-scheduler</groupId>
+      <artifactId>quartz</artifactId>
+      <version>1.8.0</version>
+    </dependency>
+
 
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
