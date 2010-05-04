@@ -1,5 +1,6 @@
 package cz.dw.test;
 
+import cz.dw.test.texy.PathUrlCodingStrategy;
 import cz.dw.test.texy.ShowPathPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.quartz.Scheduler;
@@ -24,6 +25,10 @@ public class WicketApplication extends WebApplication
   @Override
   protected void init() {
     System.out.println( "---- init() ----" );
+
+		//http://localhost:8080/wicket/stranky/test/foo.texy?dw:path=xxx
+		mount( new PathUrlCodingStrategy("stranky", ShowPathPage.class));
+		
   }
 
 
