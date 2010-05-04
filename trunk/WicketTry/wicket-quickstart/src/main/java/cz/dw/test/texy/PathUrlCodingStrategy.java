@@ -88,7 +88,7 @@ public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
 			parametersFragment = "";
 		}
 		else {
-			parametersFragment = remainder.substring( ix + SUFFIX.length() );
+			parametersFragment = remainder.substring( ix + 1 + SUFFIX.length() );
 		}
 
     // Remove potential trailing slash.
@@ -106,7 +106,7 @@ public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
 
 
     // Add the path to params.
-    parameters.put( PathUrlCodingStrategy.PATH_PARAM_NAME, requestParameters.getPath() );
+    parameters.put( PathUrlCodingStrategy.PATH_PARAM_NAME, remainder );
 
 
 		// This might be a request to a stateless page, so check for an
