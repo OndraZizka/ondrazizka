@@ -19,8 +19,8 @@ import org.apache.wicket.util.string.AppendingStringBuffer;
 public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
 {
 
-  private final static String SUFFIX = "texy";
-  private final static String PATH_PARAM_NAME = "dw:path";
+  private static final String SUFFIX = "texy";
+  public  static final String PATH_PARAM_NAME = "dw:path";
   
 
   public PathUrlCodingStrategy( String mountPath, Class bookmarkablePageClass ) {
