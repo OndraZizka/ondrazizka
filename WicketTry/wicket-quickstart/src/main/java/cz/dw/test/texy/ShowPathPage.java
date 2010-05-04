@@ -5,6 +5,7 @@ package cz.dw.test.texy;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.request.target.coding.QueryStringUrlCodingStrategy;
 
 
 /**
@@ -22,6 +23,7 @@ public class ShowPathPage extends WebPage
 
   public ShowPathPage() {
 
+		// TODO: Try QueryStringUrlCodingStrategy, whether it will give me some params.
 		if( null == getPageParameters() ){
 			this.path = "No page parameters.";
 		}

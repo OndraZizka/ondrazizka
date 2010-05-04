@@ -14,8 +14,16 @@
 	<properties>
 		<wicket.version>1.4.8</wicket.version>
 		<jetty.version>6.1.24</jetty.version>
-	 <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
+    <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
+    <jvm.args.debug></jvm.args.debug> <!-- Used by the -Pdebug profile. -->
 	</properties>
+
+
+
+  <profiles>
+    <!-- Debug: export MAVEN_OPTS='-Xdebug -Xrunjdwp:transport=dt_socket,address=4000,server=y,suspend=y'
+         -->
+  </profiles>
 
 
 	<build>
