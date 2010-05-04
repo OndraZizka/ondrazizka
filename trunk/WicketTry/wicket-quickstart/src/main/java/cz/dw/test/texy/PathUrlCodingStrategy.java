@@ -108,6 +108,8 @@ public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
     // Add the path to params.
     parameters.put( PathUrlCodingStrategy.PATH_PARAM_NAME, remainder );
 
+		requestParameters.setParameters(parameters);/// Added by me... has any effect?
+
 
 		// This might be a request to a stateless page, so check for an
 		// interface name.

@@ -5,7 +5,6 @@ package cz.dw.test.texy;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.request.target.coding.QueryStringUrlCodingStrategy;
 
 
 /**
@@ -30,6 +29,9 @@ public class ShowPathPage extends WebPage
 		else{
 			this.path = getPageParameters().getString(PathUrlCodingStrategy.PATH_PARAM_NAME, "'dw:path' param not set.");
 		}
+
+		this.path = getRequest().getParameter(PathUrlCodingStrategy.PATH_PARAM_NAME);
+
     add( new Label( "path", new PropertyModel<String>(this, "contentPath")) );
 		
   }
