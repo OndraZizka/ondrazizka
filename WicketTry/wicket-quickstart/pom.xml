@@ -145,6 +145,32 @@
 			<version>${jetty.version}</version>
 			<scope>compile</scope>
 		</dependency>
+
+
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-core</artifactId>
+      <version>4.0.0.FINAL</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-tree</artifactId>
+      <version>4.0.0.FINAL</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-query</artifactId>
+      <version>4.0.0.FINAL</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.infinispan</groupId>
+      <artifactId>infinispan-cachestore-jdbm</artifactId>
+      <version>4.0.0.FINAL</version>
+    </dependency>
+
 	</dependencies>
 
 
