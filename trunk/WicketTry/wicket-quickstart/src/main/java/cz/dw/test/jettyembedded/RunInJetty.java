@@ -6,6 +6,11 @@ import org.mortbay.jetty.Server;
 import org.mortbay.jetty.servlet.Context;
 import org.mortbay.jetty.servlet.ServletHolder;
 
+import org.mortbay.jetty.Handler;
+import org.apache.wicket.protocol.http.WicketFilter;
+import org.mortbay.jetty.servlet.FilterHolder;
+
+
 /**
  * 
 		<init-param>
