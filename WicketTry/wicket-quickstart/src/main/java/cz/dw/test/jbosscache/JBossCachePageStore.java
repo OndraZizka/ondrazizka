@@ -10,8 +10,6 @@ import org.apache.lucene.index.Term;
 import org.apache.lucene.queryParser.ParseException;
 import org.apache.lucene.search.BooleanClause.Occur;
 import org.apache.lucene.search.BooleanQuery;
-import org.apache.lucene.search.FilteredQuery;
-import org.apache.lucene.search.Query;
 import org.apache.lucene.search.Sort;
 import org.apache.lucene.search.SortField;
 import org.apache.lucene.search.TermQuery;
@@ -51,15 +49,15 @@ public class JBossCachePageStore extends AbstractPageStore implements IPageStore
 		this.manager = new DefaultCacheManager( cfg );
 		this.cache = manager.getCache();
 
-     // The QueryHelper must be instantiated before putting objects into the cache.
-     QueryHelper qh = new QueryHelper(this.cache, new Properties(), PageKey.class);
+		// The QueryHelper must be instantiated before putting objects into the cache.
+		QueryHelper qh = new QueryHelper(this.cache, new Properties(), PageKey.class);
 
-     // When I want to query objects in the cache, I will create a QueryFactory.
-     this.qf = new QueryFactory(this.cache, qh);
+		// When I want to query objects in the cache, I will create a QueryFactory.
+		this.qf = new QueryFactory(this.cache, qh);
 
-		 // Tree
-		 this.tcFactory = new TreeCacheFactory();
-		 this.treeCache = this.tcFactory.createTreeCache(cache);
+		// Tree
+		this.tcFactory = new TreeCacheFactory();
+		this.treeCache = this.tcFactory.createTreeCache(cache);
 	}
 
 
