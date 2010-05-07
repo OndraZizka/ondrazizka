@@ -1,5 +1,6 @@
 package cz.dw.test;
 
+import cz.dw.test.texy.PathUrlCodingStrategyWrong;
 import cz.dw.test.texy.PathUrlCodingStrategy;
 import cz.dw.test.texy.ShowPathPage;
 import org.apache.wicket.protocol.http.WebApplication;

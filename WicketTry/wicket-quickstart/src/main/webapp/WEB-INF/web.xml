@@ -18,7 +18,10 @@
 
 	<filter>
 		<filter-name>wicket.wicket</filter-name>
+    <!--
  		<filter-class>org.apache.wicket.protocol.http.WicketFilter</filter-class>
+    -->
+    <filter-class>cz.dw.test.reloading.MyReloadingWicketFilter</filter-class>
 		<init-param>
 			<param-name>applicationClassName</param-name>
 			<param-value>cz.dw.test.WicketApplication</param-value>
