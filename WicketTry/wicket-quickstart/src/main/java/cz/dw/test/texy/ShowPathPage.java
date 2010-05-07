@@ -23,7 +23,7 @@ public class ShowPathPage extends WebPage
 
   public ShowPathPage() {
 
-		add( new NavigationPanel("navigation"));
+		add( new NavigationPanel("navigation") );
 
 		// TODO: Try QueryStringUrlCodingStrategy, whether it will give me some params.
 		/*if( null == getPageParameters() ){

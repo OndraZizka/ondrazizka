@@ -101,28 +101,25 @@ public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
 
 
     // The params. Taken from QueryStringUrlCodingStrategy#decode().
-		String pageMapName = requestParameters.getPageMapName();
-		final PageParameters parameters = new PageParameters(requestParameters.getParameters());
-
+		final PageParameters pageParams = new PageParameters(requestParameters.getParameters());
 
     // Add the path to params.
-    parameters.put( PathUrlCodingStrategy.PATH_PARAM_NAME, remainder );
+    pageParams.put( PathUrlCodingStrategy.PATH_PARAM_NAME, remainder );
 
-		requestParameters.setParameters(parameters);/// Added by me... has any effect?
+		//requestParameters.setParameters(pageParams);/// Added by me... has any effect?
 
 
 		// This might be a request to a stateless page, so check for an
 		// interface name.
-		if (requestParameters.getInterfaceName() != null)
-		{
+		String pageMapName = requestParameters.getPageMapName();
+		if (requestParameters.getInterfaceName() != null) {
 			return new BookmarkableListenerInterfaceRequestTarget(pageMapName,
-				bookmarkablePageClassRef.get(), parameters, requestParameters.getComponentPath(),
+				bookmarkablePageClassRef.get(), pageParams, requestParameters.getComponentPath(),
 				requestParameters.getInterfaceName(), requestParameters.getVersionNumber());
 		}
-		else
-		{
+		else {
 			return new BookmarkablePageRequestTarget(pageMapName,
-				(Class)bookmarkablePageClassRef.get(), parameters);
+				(Class)bookmarkablePageClassRef.get(), pageParams);
 		}
 	}
 
