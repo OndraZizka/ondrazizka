@@ -6,6 +6,7 @@ import java.util.Map;
 import org.apache.wicket.IRequestTarget;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.request.RequestParameters;
+import org.apache.wicket.request.target.coding.IRequestTargetUrlCodingStrategy;
 import org.apache.wicket.request.target.coding.QueryStringUrlCodingStrategy;
 import org.apache.wicket.request.target.component.BookmarkableListenerInterfaceRequestTarget;
 import org.apache.wicket.request.target.component.BookmarkablePageRequestTarget;
@@ -16,7 +17,7 @@ import org.apache.wicket.util.string.AppendingStringBuffer;
  *
  * @author Ondrej Zizka
  */
-public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
+public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy implements IRequestTargetUrlCodingStrategy
 {
 
   private static final String SUFFIX = "texy";
@@ -58,14 +59,6 @@ public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
 
   
 
-  // Should I override this?
-  @Override
-  protected String urlEncodePathComponent( String string ) {
-    return super.urlEncodePathComponent( string );
-  }
-
-
-
 
 
   /**
@@ -97,7 +90,7 @@ public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
 			ix--;
 		}
 
-    // ix and reminder are not used below; basically, we just need path and params parts. TODO: Clean up?
+    // ix and parametersFragment are not used below; basically, we just need path and params parts. TODO: Clean up?
 
 
     // The params. Taken from QueryStringUrlCodingStrategy#decode().
@@ -106,20 +99,16 @@ public class PathUrlCodingStrategy extends QueryStringUrlCodingStrategy
     // Add the path to params.
     pageParams.put( PathUrlCodingStrategy.PATH_PARAM_NAME, remainder );
 
-		//requestParameters.setParameters(pageParams);/// Added by me... has any effect?
-
-
 		// This might be a request to a stateless page, so check for an
 		// interface name.
 		String pageMapName = requestParameters.getPageMapName();
 		if (requestParameters.getInterfaceName() != null) {
-			return new BookmarkableListenerInterfaceRequestTarget(pageMapName,
-				bookmarkablePageClassRef.get(), pageParams, requestParameters.getComponentPath(),
+			return new BookmarkableListenerInterfaceRequestTarget(
+				pageMapName, bookmarkablePageClassRef.get(), pageParams, requestParameters.getComponentPath(),
 				requestParameters.getInterfaceName(), requestParameters.getVersionNumber());
 		}
 		else {
-			return new BookmarkablePageRequestTarget(pageMapName,
-				(Class)bookmarkablePageClassRef.get(), pageParams);
+			return new BookmarkablePageRequestTarget(	pageMapName, (Class)bookmarkablePageClassRef.get(), pageParams);
 		}
 	}
 
