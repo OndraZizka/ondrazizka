@@ -71,8 +71,8 @@ public class JBossCachePageStore extends AbstractPageStore implements IPageStore
 			super(page);
 			this.sessionId = sessionId;
 		}
-		public PageKey(String sessionId, int pageId, String pageMapName, int versionNumber, int ajaxVersionNumber, byte[] data) {
-			super(pageId, pageMapName, versionNumber, ajaxVersionNumber, null);
+		public PageKey(String sessionId, int pageId, String pageMapName, int versionNumber, int ajaxVer, byte[] data) {
+			super(pageId, pageMapName, versionNumber, ajaxVer, null);
 			this.sessionId = sessionId;
 		}
 		public PageKey(String sessionId, SerializedPage page) {
@@ -117,19 +117,21 @@ public class JBossCachePageStore extends AbstractPageStore implements IPageStore
 
 			Note that the versionNumber and ajaxVersionNumber parameters may be -1.
 
-				* If ajaxVersionNumber is -1 and versionNumber is specified, the page store must return the page with highest ajax version.
-				* If both versionNumber and ajaxVersioNumber are -1, the pagestore must return last touched (saved) page version with given id.
+				* If ajaxVersionNumber is -1 and versionNumber is specified,
+				  the page store must return the page with highest ajax version.
+				* If both versionNumber and ajaxVersioNumber are -1, the pagestore
+				  must return last touched (saved) page version with given id.
 	 */
 	@Override
-	public <T> Page getPage( String sessionId, String pagemap, int id, int versionNumber, int ajaxVersionNumber ) {
+	public <T> Page getPage( String sessionId, String pagemap, int id, int versionNumber, int ajaxVer ) {
 
-		if( versionNumber != -1  &&  ajaxVersionNumber  != -1 ){
-			PageKey pk = new PageKey(sessionId, id, pagemap, versionNumber, ajaxVersionNumber, null);
+		if( versionNumber != -1  &&  ajaxVer  != -1 ){
+			PageKey pk = new PageKey(sessionId, id, pagemap, versionNumber, ajaxVer, null);
 			SerializedPage page = (SerializedPage) this.cache.get( pk );
 			return this.deserializePage(page.getData(), versionNumber);
 		}
 
-		CacheQuery cq = createQuery(sessionId, pagemap, id, versionNumber, ajaxVersionNumber, true);
+		CacheQuery cq = createQuery(sessionId, pagemap, id, versionNumber, ajaxVer, true);
 		QueryIterator lazyIterator = cq.lazyIterator(1);
 		SerializedPage serPage = (SerializedPage) lazyIterator.next();
 		Page page = this.deserializePage(serPage.getData(), serPage.getVersionNumber());
@@ -143,36 +145,37 @@ public class JBossCachePageStore extends AbstractPageStore implements IPageStore
 	 *  Create a query according to the given data.
 	 * @returns a query object.
 	 */
-	private CacheQuery createQuery( String sessionId, String pagemap, int id, int versionNumber, int ajaxVersionNumber, boolean doSort ){
+	private CacheQuery createQuery( String sessionId, String pagemap, int id,
+					                        int versionNumber, int ajaxVer, boolean doSort ){
 
-			// private final int pageId;
-			// private final String pageMapName;
-			// private final int versionNumber;
-			// private final int ajaxVersionNumber;
+		// private final int pageId;
+		// private final String pageMapName;
+		// private final int versionNumber;
+		// private final int ajaxVersionNumber;
 
-			BooleanQuery query = new BooleanQuery();
+		BooleanQuery query = new BooleanQuery();
 
-			query.add(  new TermQuery( new Term("sessionId", sessionId) )  , Occur.MUST);
-			query.add(  new TermQuery( new Term("pageId", ""+id) )  , Occur.MUST);
-			query.add(  new TermQuery( new Term("pageMapName", pagemap) )  , Occur.MUST);
+		query.add(  new TermQuery( new Term("sessionId", sessionId) )  , Occur.MUST);
+		query.add(  new TermQuery( new Term("pageId", ""+id) )  , Occur.MUST);
+		query.add(  new TermQuery( new Term("pageMapName", pagemap) )  , Occur.MUST);
 
-			Sort sort = null;
-			SortField sortAjax = new SortField("ajaxVersionNumber", SortField.INT, true);
+		Sort sort = null;
+		SortField sortAjax = new SortField("ajaxVersionNumber", SortField.INT, true);
 
-			if( versionNumber != -1 ){
-				// Sort by ajax only, filter by version number.
-				query.add(  new TermQuery( new Term("versionNumber", pagemap) )  , Occur.MUST);
-				if(doSort) sort = new Sort( sortAjax );
-			} else {
-				// Sort by both.
-				if(doSort) sort = new Sort( new SortField[]{ new SortField("versionNumber", SortField.INT, true), sortAjax } );
-			}
+		if( versionNumber != -1 ){
+			// Sort by ajax only, filter by version number.
+			query.add(  new TermQuery( new Term("versionNumber", pagemap) )  , Occur.MUST);
+			if(doSort) sort = new Sort( sortAjax );
+		} else {
+			// Sort by both.
+			if(doSort) sort = new Sort( new SortField[]{ new SortField("versionNumber", SortField.INT, true), sortAjax } );
+		}
 
 
-			CacheQuery cq = qf.getQuery( query );
-			if( sort != null ) cq.setSort( sort );
+		CacheQuery cq = qf.getQuery( query );
+		if( sort != null ) cq.setSort( sort );
 
-			return cq;
+		return cq;
 	}
 
 
@@ -220,8 +223,8 @@ public class JBossCachePageStore extends AbstractPageStore implements IPageStore
 	 * Returns whether the PageStore contains given page.
 	 */
 	@Override
-	public boolean containsPage(String sessionId, String pageMapName, int pageId, int pageVersion) {
-		CacheQuery cq = createQuery( sessionId, pageMapName, pageId, pageVersion, -1, false);
+	public boolean containsPage(String sessionId, String pageMapName, int pageId, int pageVer) {
+		CacheQuery cq = createQuery( sessionId, pageMapName, pageId, pageVer, -1, false);
 		return cq.getResultSize() > 0;
 	}
 
