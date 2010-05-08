@@ -1,5 +1,6 @@
 package cz.dw.test;
 
+import cz.dw.test.texy.HomePage;
 import cz.dw.test.texy.PathUrlCodingStrategyWrong;
 import cz.dw.test.texy.PathUrlCodingStrategy;
 import cz.dw.test.texy.ShowPathPage;
@@ -29,6 +30,7 @@ public class WicketApplication extends WebApplication
 
 		//http://localhost:8080/wicket/stranky/test/foo.texy?dw:path=xxx
 		mount( new PathUrlCodingStrategy("stranky", ShowPathPage.class));
+		mount( new PathUrlCodingStrategy("layout", HomePage.class));
 		
   }
 
