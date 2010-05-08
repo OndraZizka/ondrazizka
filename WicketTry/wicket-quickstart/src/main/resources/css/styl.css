@@ -1,0 +1,291 @@
+/******************************************************************************************
+* 
+*   CSS  pro Ondra.Zizka.cz
+* 
+******************************************************************************************/
+
+
+
+
+/*@import URL('common.css');*/
+@import URL('obsah.css');
+
+
+body, table  { font-family: Arial CE, Arial, Helvetica, sans-serif; color: #000000; }
+body  {
+	position: relative;
+	background-color: #cee6f8; /*#deeefc;*/ background-image: URL("../img/page_bg_x8d_c2.jpg");
+	background-repeat: repeat-x;
+	margin: 0px;
+	padding: 0px;
+}
+a         { color: #000000; }
+a:active  { color: #0000ff; }
+a:visited { color: #000000; }
+
+#header { width: 736px; /*margin: 0px auto; // zajisti to UNIcenter */ }
+#header .svatek, #header .datum {
+	font-family: Tahoma CE, Arial CE, Tahoma, Arial, Helvetica, sans-serif;
+	color: #c9e5f9; /*#F9F499*/ font-size: 9pt; font-weight: normal;	
+}
+#header .svatek { float: left; }
+#header .datum  { float: right; }
+
+#nadpis      { clear: both; }
+#title_part1 { background-image: URL("../img/tipart1.gif"); background-repeat: no-repeat; }
+#title_part2 { background-image: URL("../img/tipart2.gif"); background-repeat: repeat-x; }
+.title   { text-align: center; font-family: Arial CE, Arial, Helvetica, sans-serif; font-size: 30pt; font-weight: bold; }
+#title_part3 { background-image: URL("../img/tipart3.gif"); background-repeat: no-repeat; }
+.counter { font-family: Arial CE, Arial, Helvetica, sans-serif; font-size:  7pt; font-weight: bold; }
+
+/***** Main *****/
+/* Debilni MSIE tohle neskousne */
+/*#main { border: 1px solid red; width: 736px; margin: 0px auto; }	*/
+
+#main { margin-bottom: 6px; }
+
+#main hr.cistic { visibility: hidden; margin: 0px; padding: 0px; width: 736px; }
+#menu, #obsah  { margin-bottom: 12px; }
+
+
+
+/***** Menu *****/                   /* { border: 1px solid red; } */
+
+#menu_container {
+	position: relative;
+	width: 155px;
+  border: 1px solid black; background-color: #fefefe; margin-right: 10px;
+	-moz-box-sizing : border-box;
+}
+#menu_container hr.cistic { visibility: hidden; margin: 0px; width: 154px; }
+
+/*#menu>.blok>div.nadpis,  / * Mozilla */	
+#menu li.level0 span {
+  display: block;
+	/*background-image: URL("../img/menubreakbg.gif"); height: 27px;*/
+	background-image: URL("../img/menubreak_bg3_x8.gif"); height: 20px;
+	background-attachment: scroll;
+	background-position: top;
+	background-repeat: repeat-x;
+	text-align: center; font-weight: bold;
+	margin-bottom: 3px; /* pod modrym obdelnikem nadpisu */
+}
+#menu li.level0 span {
+	font-size: 12px; font-family: Verdana CE, Verdana, sans-serif;
+	padding-top: 3px; margin: 0px; 
+}
+
+/* druha uroven kvuli debilnimu MSIE */
+#menu li.level0 li.level1 span {
+	background-image: none; height: auto;
+	margin-bottom: 0px; /* pod obdelnikem podnadpisu */
+}
+#menu li.level0 li.level1 span { font-size: 10pt; padding-top: 3px; margin: 0px; }
+/* druha uroven - KONEC */
+
+#menu li.level0 ul.level1 { margin: 0px 4px 0px 4px; } 
+#menu li.level0 li.level1 { margin-left: 2px; margin-right: 2px; } 
+#menu li { margin-bottom: 5px; }
+
+
+#menu a         { text-decoration: none; font-family: Verdana CE, Verdana, Arial CE, Arial, sans-serif; }
+#menu a:visited { text-decoration: none; }
+#menu a:active  { text-decoration: none;      color: #2675ae;  }
+#menu a:hover   { text-decoration: underline; color: #2052a4;  }
+
+#menu form#admin_login {
+	/*position: absolute;*/
+	margin: 0px auto 0px; padding: 0px;
+	display: inline;
+}
+#menu form#admin_login input {
+	width: 50px;
+	border: none; background-color: transparent;
+}
+#menu form#admin_login input {
+	border: hidden; background-color: transparent;
+}
+
+
+
+
+
+
+
+/*****   News   *****/
+
+.news .novinky,
+.news .komentare {
+	margin-bottom: 1em;
+	/*background: white;
+	border: 1px solid red;*/
+}
+
+/* kategorie novinek v nadpisu */
+.news h2 span.kategorie {
+	display: block;
+	padding-left: 10px;
+	vertical-align: baseline;
+	font-family: "Arial CE", Arial, Helvetica, sans-serif; font-size: 9pt; font-weight: normal;
+}
+.news h2 span.kategorie a { text-decoration: none; }
+.news h2 span.kategorie .cnt { font-size: 9px; }
+
+/* Uvitani */	
+.news .uvitani {
+	margin-bottom: 16px;
+	padding-right: 3em;
+	padding-left: 6em;
+}
+.news .uvitani p { margin: 0px; }
+
+
+.news .novinka,
+.news .komentar {
+	position: relative;
+	clear: both;
+	margin-bottom: 1.4em;
+	padding-right: 2.5em;
+}
+.news .novinka  { margin-top: 1.4em; }
+.news .komentar { margin-top: 0.8em; }
+
+.news .novinka  div.datum {
+	float: left;
+	clear: both;
+	/*font-style: italic;*/
+	font-size: 18pt; color: gray;
+	/*margin-bottom: -0.15em; /*margin-bottom: -0.85em;*/
+	position: relative;
+	letter-spacing: -.05em; 
+}
+.news .komentar div.datum {
+	float: left;
+	clear: both;
+	font-size: 14pt; color: #606060;
+	position: relative;
+	letter-spacing: -.03em; 
+}
+
+.news .novinka  .rok,
+.news .komentar .rok {
+	/*display: none;  /*** uplne skrejt */
+	font-size: 55%; font-weight: normal; margin-left: 2px;
+	vertical-align: baseline;
+}
+.news .novinka  h3.nadpis {
+	font-size: 14pt; color: gray; font-weight: normal;
+	margin: 0.3em 0em 0em 80px;
+	padding-top: 2px;
+}
+.news .novinka .komentare_odkaz { margin-top: 0.5em; }
+
+
+/* Komentare */
+.news .komentar h3.nadpis {
+	font-size: 12pt; color: #303030; font-weight: bold;
+	margin: 0.3em 0em 0em 80px;
+	padding-top: 2px;
+}
+.news .komentar p { margin: 0px; }
+.news .komentar .akce {
+	position: absolute; width: 80px;
+}
+.news .komentar .akce a, a.akce {
+	display: block; width: auto; margin: 2px 6px;
+	padding: 0px 2px; border: 2px outset gray; background-color: #e2f2fa; 
+	color: red; text-decoration: none; text-align: center; font-size: 9pt;
+}
+
+
+
+
+/* Formular - komentar k news */
+.news #news_comment_add { margin-top: 1em; }
+.news #news_comment_add form fieldset { margin: 0.5em auto; border: 1px solid gray; padding: 4px; padding-top: 0.5em; }
+.news #news_comment_add form div { margin-top: 0.4em; }
+.news #news_comment_add form hr.clear { visibility: visible; border-bottom: 1px dotted gray; margin-top: 0px; }
+/*.news #news_comment_add label { float: left; margin: 0px; }
+.news #news_comment_add input { width: 460px; float: right;  border: 1px inset gray; }*/
+.news #news_comment_add form label { width: 6em; float:left; text-align:right; margin-right:0.5em; }
+.news #news_comment_add form input { width: 360px; border: 1px inset gray; }
+.news #news_comment_add form textarea { border: 2px ridge gray; }
+.news #news_comment_add form input.button { width: 50%; float: none; border: 2px outset ButtonFace; }
+
+
+
+
+ 
+/*** News + Komentare -- spolecne veci ***/
+.news .novinka  div.text,
+.news .komentar div.text {
+	border-top: 1px solid black;
+	padding-left: 80px;
+	padding-top: 0.5em;
+}
+
+.news .novinka div.text h3 { margin-top: 1.6em; margin-bottom: 1.0em; }
+.news .novinka div.text h4 { margin-top: 0.9em; margin-bottom: 0.4em; }
+.news .novinka div.text p  { margin-top: 0.2em; margin-bottom: 0.2em; }
+.news .novinka div.text ul,
+.news .novinka div.text ol { margin-top: 0.4em; margin-bottom: 0.9em; }
+
+.news img { border: 1px solid gray; margin-top: 0.3em; margin-bottom: 0.3em; }
+.news img.left { float: left; margin-right: 0.5em; }
+.news img.right { float: right; margin-left: 0.5em; }
+
+/** Strankovani **/
+.news .strankovani { border: 1px solid gray; background-color: #E0E9EF; padding: 0.1em 0.5em; margin-top: 3em; }
+.news .strankovani h3 { margin: 0.3em auto; }
+.news .strankovani ul { margin: 0.3em auto; }
+.news .strankovani a.active { color: black; text-decoration: none; font-weight: bold; }
+
+/*** News + Komentare -- spolecne veci - KONEC ***/
+
+
+
+
+
+
+.cerna_cara_na_konci { background-color: black; border-color: black; height: 1px; width: 100%; }
+
+
+
+
+/* Admin */
+.admin_hr_red { background-color: red; width: 100%; height: 2px; border: none; margin: 2px; }
+
+.messages { border: 1px solid black; margin: 1em auto; padding: 3px 5px; color: red; font-size: 12pt; font-weight: bold; background-color: #ebf8fc; }
+.messages p { margin: 0em; }
+
+.actions { border: 1px solid black; padding: 3px; margin: 1em auto; background-color: #ebf8fc; }
+.actions .label { font-weight: bold; }
+.pridani { border: 1px solid black; margin: 1em auto; padding: 3px; }
+
+textarea { width: 100%; }
+
+
+
+
+
+/* Dynawest */
+.dynawest   { color: #bbbbbb; }
+.dynawest A { color: #9ebbff; }
+
+/* Pocitadla */
+#pocitadla { position: absolute; bottom: 4px; right: 4px; width: 52px; float: right; }
+#pocitadla, #pocitadla * { margin: 0px;  padding: 0px; }
+#pocitadla .pocitadlo { float: right; }
+
+
+td, th  { font-family: Arial CE, Arial, Helvetica CE, Helvetica, sans-serif; font-size: 13px;}
+.body_scrollbar {
+	scrollbar-face-color: #caddf4;
+	scrollbar-shadow-color: #ffffff;
+	scrollbar-highlight-color: #ffffff;
+	scrollbar-3dlight-color: #336699;
+	scrollbar-darkshadow-color: #333333;
+	scrollbar-arrow-color: #808080;
+}
+
+/* border: 1px dotted red; */

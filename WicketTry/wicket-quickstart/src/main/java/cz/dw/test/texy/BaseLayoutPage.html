@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250"/>
+	<meta name="Author" content="Ondra Žižka, ondra at dynawest.cz"/>
+	<meta name="Keywords" content="Java, J2EE, SQL, JBoss, PLSQL, AOP, Hibernate, JavaScript, insolvenční rejstřík"/>
+	<meta name="Description" content="Ondra Žižka – personal website - osobní web Ondřeje Žižky"/>
+	<link rel="stylesheet" type="text/css" href="/css/dw_styles.css"/>
+	<link rel="stylesheet" type="text/css" href="/css/styl.css"/>
+  <script type="text/javascript" charset="windows-1250" src="/js/jquery.js.php"></script>
+  <script type="text/javascript" charset="windows-1250" src="/js/logout.js"></script>
+
+  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shCore.js"></script>
+  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushJava.js"></script>
+  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushGroovy.js"></script>
+  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushXml.js"></script>
+  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushSql.js"></script>
+  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushBash.js"></script>
+  <link type="text/css" rel="stylesheet" href="/lib/syntaxhighlighter/styles/shCore.css"/>
+  <link type="text/css" rel="stylesheet" href="/lib/syntaxhighlighter/styles/shThemeDefault.css"/>
+
+  <script type="text/javascript">
+    function ShowMenuSekce( eSekce ){
+      $("ul.level0>li").addClass("collapsed");
+      $(eSekce).removeClass("collapsed");
+    }
+    SyntaxHighlighter.config.clipboardSwf = '/lib/syntaxhighlighter/scripts/clipboard.swf';
+    SyntaxHighlighter.all(); // Will add a listener to window.onload.
+  </script>
+  <title>Ondra Žižka – personal website</title>
+</head>
+<body>
+
+  <div wicket:id="header"></div>
+  <div wicket:id="content"></div>
+
+</body>
+</html>
