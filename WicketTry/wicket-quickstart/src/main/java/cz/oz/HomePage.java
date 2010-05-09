@@ -2,7 +2,6 @@
 package cz.oz;
 
 
-import cz.oz.BaseLayoutPage;
 import java.util.logging.*;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
