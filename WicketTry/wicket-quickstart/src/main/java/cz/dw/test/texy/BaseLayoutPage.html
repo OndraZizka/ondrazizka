@@ -1,23 +1,23 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html>
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd" xml:lang="cz" lang="cz">
   <head>
 
-	<meta http-equiv="Content-Type" content="text/html; charset=windows-1250"/>
-	<meta name="Author" content="Ondra éiûka, ondra at dynawest.cz"/>
-	<meta name="Keywords" content="Java, J2EE, SQL, JBoss, PLSQL, AOP, Hibernate, JavaScript, insolvenËnÌ rejst¯Ìk"/>
-	<meta name="Description" content="Ondra éiûka ñ personal website - osobnÌ web Ond¯eje éiûky"/>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="Author" content="Ondra ≈Ωi≈æka, ondra at dynawest.cz"/>
+	<meta name="Keywords" content="Java, J2EE, SQL, JBoss, PLSQL, AOP, Hibernate, JavaScript, insolvenƒçn√≠ rejst≈ô√≠k"/>
+	<meta name="Description" content="Ondra ≈Ωi≈æka ‚Äì personal website - osobn√≠ web Ond≈ôeje ≈Ωi≈æky"/>
 	<link rel="stylesheet" type="text/css" href="/css/dw_styles.css"/>
 	<link rel="stylesheet" type="text/css" href="/css/styl.css"/>
-  <script type="text/javascript" charset="windows-1250" src="/js/jquery.js.php"></script>
-  <script type="text/javascript" charset="windows-1250" src="/js/logout.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/jquery.js.php"></script>
+  <script type="text/javascript" charset="utf-8" src="/js/logout.js"></script>
 
-  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shCore.js"></script>
-  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushJava.js"></script>
-  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushGroovy.js"></script>
-  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushXml.js"></script>
-  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushSql.js"></script>
-  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushPlain.js"></script>
-  <script type="text/javascript" charset="windows-1250" src="/lib/syntaxhighlighter/scripts/shBrushBash.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/lib/syntaxhighlighter/scripts/shCore.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/lib/syntaxhighlighter/scripts/shBrushJava.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/lib/syntaxhighlighter/scripts/shBrushGroovy.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/lib/syntaxhighlighter/scripts/shBrushXml.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/lib/syntaxhighlighter/scripts/shBrushSql.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/lib/syntaxhighlighter/scripts/shBrushPlain.js"></script>
+  <script type="text/javascript" charset="utf-8" src="/lib/syntaxhighlighter/scripts/shBrushBash.js"></script>
   <link type="text/css" rel="stylesheet" href="/lib/syntaxhighlighter/styles/shCore.css"/>
   <link type="text/css" rel="stylesheet" href="/lib/syntaxhighlighter/styles/shThemeDefault.css"/>
 
@@ -29,12 +29,69 @@
     SyntaxHighlighter.config.clipboardSwf = '/lib/syntaxhighlighter/scripts/clipboard.swf';
     SyntaxHighlighter.all(); // Will add a listener to window.onload.
   </script>
-  <title>Ondra éiûka ñ personal website</title>
+  <title>Ondra ≈Ωi≈æka ‚Äì personal website</title>
 </head>
 <body>
 
   <div wicket:id="header"></div>
-  <div wicket:id="content"></div>
+
+
+  <div id="main">
+  <!-- MAIN TABLE -->
+
+  <table align="center" border="0" width="1000" cellspacing="0" cellpadding="0"><tr>
+  <!-- Menu -->
+  <td valign="top">
+    <div id="menu_container">
+
+
+          <!-- Login -->
+          <div class="login">
+             <a rel="nofollow" href="/Login.php?1273346342">P≈ôihl√°≈°en√≠...</a>
+          </div>
+
+          <!-- Menu -->
+          <div class="menu" wicket:id="menu">Menu menu menu</div>
+
+          <wicket:container wicket:id="donate">Donate pls :)</wicket:container>
+
+    	<hr class="cistic" />
+    </div>
+  </td><!-- Menu KONEC -->
+
+
+
+  <!-- MAIN CELL -->
+  <td valign="top" width="850">
+
+          <!-- Obsah -->
+          <div class="obsah" id="obsah">
+            <div class="zaznam">
+                <div class="content" wicket:id="content">
+                </div>
+                <div class="cistic"><!--  --></div>
+            </div>
+
+            <span class="konec-odrazka" style="font-size: 200%;">
+              <!-- &#x062A; &#x0643; &#xFDF2; &#x06DE; -->
+              <!-- &#x25A1; -->
+            </span>
+          </div>
+
+  </td>
+  <!-- MAIN CELL KONEC -->
+
+
+  </tr>
+  <tr><td colspan="2" height="1" bgcolor="#000000"></td></tr><!-- carka -->
+  </table>
+  <!-- MAIN TABLE KONEC -->
+  <!-- <hr class="cistic" size="0"/> -->
+</div>
+
+
+  <div wicket:id="counters"></div>
+  
 
 </body>
 </html>
