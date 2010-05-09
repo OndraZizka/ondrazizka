@@ -8,7 +8,7 @@
 	<version>1.0-SNAPSHOT</version>
 
   <!-- TODO project name  -->
-	<name>quickstart</name>
+	<name>wicket-quickstart</name>
 	<description></description>
 
 	<properties>
@@ -16,7 +16,7 @@
 		<jetty.version>6.1.24</jetty.version>
     <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
     <jvm.args.debug></jvm.args.debug> <!-- Used by the -Pdebug profile. -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <project.build.sourceEncoding>utf-8</project.build.sourceEncoding>
 	</properties>
 
 
@@ -68,6 +68,7 @@
 					<target>1.6</target>
 					<optimize>true</optimize>
 					<debug>true</debug>
+          <encoding>utf-8</encoding>
 				</configuration>
 			</plugin>
 			<plugin>
