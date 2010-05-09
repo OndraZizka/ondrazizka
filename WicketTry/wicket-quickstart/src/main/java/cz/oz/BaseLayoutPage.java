@@ -27,6 +27,11 @@ public class BaseLayoutPage extends WebPage
     add( new Include( "counters", "static/CountersPanel.html" ) );
   }
 
+
+  public WicketApplication getApp(){
+    return (WicketApplication) this.getApplication();
+  }
+
   
 
 

@@ -26,6 +26,10 @@
 			<param-name>applicationClassName</param-name>
 			<param-value>cz.oz.WicketApplication</param-value>
  		</init-param>
+		<init-param>
+			<param-name>jtexyStorePath</param-name>
+			<param-value>d:\web\ondra.zizka.cz\real\new\stranky\</param-value>
+ 		</init-param>
  	</filter>
 
   <filter-mapping>
