@@ -210,8 +210,15 @@
 	</dependencies>
 
   <repositories>
+    <!-- Infinispan -->
     <repository><id>jboss</id><url>https://repository.jboss.org/nexus/content/groups/public</url></repository>
+    <!-- JTexy -->
+    <repository>
+      <id>jtexy-google-svn-repo</id>
+      <snapshots> <enabled>true</enabled> </snapshots>
+      <name>JTexy maven repo at Google Code</name>
+      <url>http://jtexy.googlecode.com/svn/maven/</url>
+    </repository>
   </repositories>
-
 
 </project>
