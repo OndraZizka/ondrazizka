@@ -2,6 +2,10 @@
 package cz.oz;
 
 
+import cz.dynawest.jtexy.TexyException;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.PropertyModel;
@@ -14,21 +18,33 @@ import org.apache.wicket.model.PropertyModel;
 public class ShowPathPage extends BaseLayoutPage
 {
 
-  private String path = "someInitialValue.texy";
-	public String getTexyPath() {		return path;	}
-	public void setTexyPath(String path) {		this.path = path;	}
+  private String texyPath = "someInitialValue.texy";
+	public String getTexyPath() {		return texyPath;	}
+	public void setTexyPath(String path) {		this.texyPath = path;	}
 
 
 
-
+  /**
+   * Const
+   */
   public ShowPathPage(PageParameters pageParams) {
     super( pageParams );
 
-		this.path = pageParams.getString("dw:path");
+		this.texyPath = pageParams.getString("dw:path");
 
-    add( new Label( "contentFilePath", new PropertyModel<String>(this, "path")) );
+    String texyContent;
+    try {
+      texyContent = getApp().getJtexyProvider().getContent( texyPath );
+    }
+    catch( Exception ex ) {
+      Logger.getLogger( ShowPathPage.class.getName() ).log( Level.SEVERE, null, ex );
+      texyContent = "Can't get the content: "+ex.getMessage();
+    }
 
-    add( new Label( "content", "Content" ) );
+
+    add( new Label( "contentFilePath", new PropertyModel<String>(this, "texyPath")) );
+
+    add( new Label( "content", texyContent ).setEscapeModelStrings(false) );
 
   }
 

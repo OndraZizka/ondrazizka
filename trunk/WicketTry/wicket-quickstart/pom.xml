@@ -120,6 +120,26 @@
       <version>1.7</version>
     </dependency>
 
+    <!-- JTexy -->
+    <dependency>
+      <groupId>cz.dynawest.jtexy</groupId>
+      <artifactId>JTexyCore</artifactId>
+      <version>1.0-SNAPSHOT</version>
+    </dependency>
+
+    <!-- Commons-lang -->
+    <dependency>
+      <groupId>commons-lang</groupId>
+      <artifactId>commons-lang</artifactId>
+      <version>2.5</version>
+    </dependency>
+    <!-- Commons-lang -->
+    <dependency>
+      <groupId>commons-io</groupId>
+      <artifactId>commons-io</artifactId>
+      <version>1.4</version>
+    </dependency>
+
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -162,6 +182,7 @@
 		</dependency>
 
 
+    <!-- Infinispan - used for Wicket IPageStore test implementation. -->
     <dependency>
       <groupId>org.infinispan</groupId>
       <artifactId>infinispan-core</artifactId>

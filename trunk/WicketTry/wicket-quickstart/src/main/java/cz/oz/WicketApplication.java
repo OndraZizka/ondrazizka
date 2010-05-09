@@ -1,5 +1,8 @@
 package cz.oz;
 
+import cz.dynawest.jtexy.TexyException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.quartz.Scheduler;
 
@@ -10,8 +13,12 @@ import org.quartz.Scheduler;
  */
 public class WicketApplication extends WebApplication
 {
+  private static final Logger log = Logger.getLogger( WicketApplication.class.getName() );
 
-  Scheduler scheduler;
+
+  private JTexyContentProvider jtexyProvider;
+  public JTexyContentProvider getJtexyProvider() {    return jtexyProvider;  }
+
 
   /**
    * Constructor
@@ -19,20 +26,28 @@ public class WicketApplication extends WebApplication
   public WicketApplication() {
   }
 
+
   // Init
-  @Override
-  protected void init() {
+  @Override protected void init() {
     System.out.println( "---- init() ----" );
 
 		//http://localhost:8080/wicket/stranky/test/foo.texy?dw:path=xxx
 		mount( new PathUrlCodingStrategy("stranky", ShowPathPage.class));
-	
+
+    String jtexyStorePath = this.getInitParameter("jtexyStorePath");
+    try {
+      this.jtexyProvider = new JTexyContentProvider( jtexyStorePath );
+    }
+    catch( TexyException ex ) {
+      log.log( Level.SEVERE, null, ex );
+    }
   }
 
 
+
+
   // Shutdown
-  @Override
-  protected void onDestroy() {
+  @Override protected void onDestroy() {
     System.out.println( "---- onDestroy() ----" );
   }
 
@@ -43,10 +58,6 @@ public class WicketApplication extends WebApplication
    * @see org.apache.wicket.Application#getHomePage()
    */
   public Class getHomePage() {
-    //return HomePage.class;
-    //return Page1.class;
-    //return GuestBook.class;
-    //return CreatePerson.class;
     return HomePage.class;
   }
 
