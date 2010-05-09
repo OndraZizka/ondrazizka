@@ -1,8 +1,7 @@
 
-package cz.dw.test.texy;
+package cz.oz;
 
 
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.logging.*;
@@ -23,9 +22,9 @@ public class Header extends Panel
 
     int viewCount = 7; // TODO
 
-    // Sobota 8. kvìtna '10
+    // Sobota 8. kvÄ›tna '10
     add( new Label("datum", new SimpleDateFormat("EEEE d. MMM ''y", new Locale( "cs_CZ", "cz")).format( new Date() )) );
-    add( new Label("svatek", "Svátek má Ctibor, zítra Hermus") ); // TODO
+    add( new Label("svatek", "SvÃ¡tek mÃ¡ Ctibor, zÃ­tra Hermus") ); // TODO
     add( new Label("counter", "" + viewCount ) );
   }
 

@@ -1,9 +1,5 @@
-package cz.dw.test;
+package cz.oz;
 
-import cz.oz.HomePage;
-import cz.dw.test.texy.PathUrlCodingStrategyWrong;
-import cz.oz.PathUrlCodingStrategy;
-import cz.dw.test.texy.ShowPathPage;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.quartz.Scheduler;
 
@@ -30,8 +26,7 @@ public class WicketApplication extends WebApplication
 
 		//http://localhost:8080/wicket/stranky/test/foo.texy?dw:path=xxx
 		mount( new PathUrlCodingStrategy("stranky", ShowPathPage.class));
-		mount( new PathUrlCodingStrategy("layout", HomePage.class));
-		
+	
   }
 
 
@@ -52,7 +47,7 @@ public class WicketApplication extends WebApplication
     //return Page1.class;
     //return GuestBook.class;
     //return CreatePerson.class;
-    return ShowPathPage.class;
+    return HomePage.class;
   }
 
 

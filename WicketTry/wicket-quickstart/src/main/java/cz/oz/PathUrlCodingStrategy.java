@@ -1,5 +1,5 @@
 
-package cz.dw.test.texy;
+package cz.oz;
 
 
 import java.util.Map;

@@ -3,7 +3,6 @@ package cz.dw.test.texy;
 
 
 import org.apache.wicket.PageParameters;
-import org.apache.wicket.Session;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.PropertyModel;
@@ -34,6 +33,7 @@ public class ShowPathPage extends WebPage
 
 
   public ShowPathPage(PageParameters pageParams) {
+    super(pageParams);
 
 		add( new NavigationPanel("navigation") );
 
