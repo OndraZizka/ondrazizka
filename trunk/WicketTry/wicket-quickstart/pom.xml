@@ -113,6 +113,12 @@
       <version>1.8.0</version>
     </dependency>
 
+    <!-- PLJ compressing servlet filter -->
+    <dependency>
+      <groupId>cz.dynawest.third.pljfilter</groupId>
+      <artifactId>pljFilter</artifactId>
+      <version>1.7</version>
+    </dependency>
 
 		<!-- LOGGING DEPENDENCIES - LOG4J -->
 		<dependency>
