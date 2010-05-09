@@ -16,6 +16,7 @@
 		<jetty.version>6.1.24</jetty.version>
     <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
     <jvm.args.debug></jvm.args.debug> <!-- Used by the -Pdebug profile. -->
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 
