@@ -58,8 +58,12 @@ public class JTexyContentProvider
       return content;
     }
 
-    String file = FileUtils.readFileToString( new File(storePath + path ) );
+    String file = FileUtils.readFileToString( new File(storePath + path ), "windows-1250" );
     content = this.jtexy.process( file );
+
+    // Convert encoding.
+    //content = new String(content.getBytes("utf-8"), "windows-1250");
+
     storeCachedContent( path, content );
 
     return content;

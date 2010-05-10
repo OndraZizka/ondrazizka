@@ -2,10 +2,14 @@
 package cz.oz;
 
 
+import java.io.File;
 import java.util.logging.*;
+import org.apache.commons.io.FileUtils;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.include.Include;
+import org.apache.wicket.markup.html.panel.Panel;
+import org.apache.wicket.model.Model;
 
 
 /**
@@ -23,8 +27,10 @@ public class BaseLayoutPage extends WebPage
     //add( new Header( "content" )); // The rest is done in the inherited classes.
 
     add( new MenuPanel( "menu" ) );
-    add( new Include( "donate", "static/DonatePanel.html" ) );
-    add( new Include( "counters", "static/CountersPanel.html" ) );
+    //add( new Panel( "donate", new Model<String>( FileUtils.readFileToString(new File("./static/DonatePanel.html")) ) ) );
+    //add( new Panel( "counters", "./static/CountersPanel.html" ) );
+    add( new DonatePanel("donate") );
+    add( new CountersPanel("counters") );
   }
 
 

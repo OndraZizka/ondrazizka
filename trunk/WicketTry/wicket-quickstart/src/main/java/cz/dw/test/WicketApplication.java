@@ -29,7 +29,7 @@ public class WicketApplication extends WebApplication
     System.out.println( "---- init() ----" );
 
 		//http://localhost:8080/wicket/stranky/test/foo.texy?dw:path=xxx
-		mount( new PathUrlCodingStrategy("strankyx", ShowPathPage.class));
+		mount( new PathUrlCodingStrategy("stranky", ShowPathPage.class));
 		mount( new PathUrlCodingStrategy("layout", HomePage.class));
 		
   }
