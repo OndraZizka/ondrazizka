@@ -212,6 +212,8 @@
   <repositories>
     <!-- Infinispan -->
     <repository><id>jboss</id><url>https://repository.jboss.org/nexus/content/groups/public</url></repository>
+    <!-- PLJ filter and my other stuff -->
+    <repository><id>ondrazizka-googlecode</id><url>http://ondrazizka.googlecode.com/svn/maven</url></repository>
     <!-- JTexy -->
     <repository>
       <id>jtexy-google-svn-repo</id>
