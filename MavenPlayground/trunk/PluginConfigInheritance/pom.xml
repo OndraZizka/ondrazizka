@@ -1,0 +1,56 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>cz.oz.mavenplayground.configinherit</groupId>
+  <artifactId>PluginConfigInheritance</artifactId>
+  <version>1.0</version>
+  <packaging>war</packaging>
+
+  <name>Plugin Config Inheritance</name>
+  <url>http://code.google.com/p/ondrazizka/</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+  
+  <build>
+      <plugins>
+          <plugin>
+              <groupId>org.apache.maven.plugins</groupId>
+              <artifactId>maven-war-plugin</artifactId>
+              <version>2.0</version>
+              <configuration>
+                  <archive> <manifest> <addClasspath>true</addClasspath> </manifest> </archive>
+                  <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                  <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                  <outputDirectory>target/test</outputDirectory>
+                  <webappDirectory>target/test/webapp</webappDirectory>
+                  <workDirectory  >target/test/work</workDirectory>
+              </configuration>
+          </plugin>
+      </plugins>
+  </build>
+  
+
+  <profiles>
+      <profile>
+          <id>child</id>
+          <build>
+              <plugins>
+                  <plugin>
+                      <groupId>org.apache.maven.plugins</groupId>
+                      <artifactId>maven-war-plugin</artifactId>
+                      <version>2.0</version>
+                      <configuration>
+                          <outputDirectory>target/test-child</outputDirectory>
+                      </configuration>
+                  </plugin>
+              </plugins>
+          </build>
+      </profile>
+
+
+  </profiles>
+
+</project>
