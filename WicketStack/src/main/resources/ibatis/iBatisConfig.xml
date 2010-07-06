@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE sqlMapConfig PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+  <!--
+  <properties resource="properties/database.properties"/>
+  <properties url="file:nastaveni.properties"/>
+  <properties url="file:conf/${profile}/nastaveni.properties"/>
+  -->
+
+  <settings statementCachingEnabled="true" classInfoCacheEnabled="true"/>
+
+  <!-- Jelikož používáme netransakční MySQL, není třeba transakcí (pro iBatis).
+       A jelikož datasource dodáváme přes Spring, nepotřebujeme ani <dataSource>. -->
+  <!--
+  <transactionManager type="EXTERNAL">
+    <dataSource type="SIMPLE">
+      <property name="JDBC.Driver" value="${jdbc.driver}"/>
+      <property name="JDBC.ConnectionURL" value="${jdbc.url}"/>
+      <property name="JDBC.Username" value="${jdbc.username}"/>
+      <property name="JDBC.Password" value="${jdbc.password}"/>
+      <property name="JDBC.DefaultAutoCommit" value="false"/>
+      <property name="Driver.characterEncoding" value="UTF-8"/>
+      <property name="Driver.characterSetResults" value="UTF-8"/>
+      <property name="Driver.zeroDateTimeBehavior" value="convertToNull"/>
+    </dataSource>
+  </transactionManager>
+  -->
+
+  
+  <sqlMap resource="ibatis-maps/Udalosti.xml"/>
+  <sqlMap resource="ibatis-maps/Spisy.xml"/>
+  <sqlMap resource="ibatis-maps/OsobyAdresy.xml"/>
+  <sqlMap resource="ibatis-maps/Users.xml"/>
+  <sqlMap resource="ibatis-maps/SledovaneSubjekty.xml"/>
+  <sqlMap resource="ibatis-maps/ruzne.xml"/>
+  <sqlMap resource="ibatis-maps/KontrolaDluzniku.xml"/>
+  <sqlMap resource="ibatis-maps/Mails.xml"/>
+  <sqlMap resource="ibatis-maps/TestQueries.xml"/>
+  <sqlMap resource="ibatis-maps/UdalostiQueue.xml"/>
+
+  <sqlMap resource="ibatis-maps/TestMatching.xml"/>
+
+</sqlMapConfig>

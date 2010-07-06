@@ -1,0 +1,16 @@
+* { padding: 0; margin: 0; -moz-box-sizing: border-box; box-sizing: border-box; }
+table { color: inherit; font: inherit; } /* Tabulky dìdí vlastnosti */
+table td { vertical-align: top; }
+ul, ol { margin-left: 2.5em; }
+li { margin-bottom: 0.5ex; }
+a { color: #1D689F; text-decoration: none; } /* #5A9DCF - svetle modra */
+a:hover { color: #338DCF; border-bottom: 1px dashed orange; background-color: #DFEEF9;  }
+a:visited { color: #B5C4CF; }
+
+body {
+  font-family: "Arial CE", Arial, "Tahoma CE", Tahoma, sans-serif;
+  font-size: 10pt;
+  color: black;
+  background-color: #404040; /* #C1DDF3 - blankyt */
+  margin: 0;
+}

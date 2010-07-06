@@ -1,0 +1,118 @@
+
+/**********   OBSAH   **********/
+
+
+#nadpis { margin-bottom: 10px; }
+#nadpis h1 { margin: 0px; padding: 0px; }
+
+
+
+/** Svetlejsi pozadi obsahu **/
+#obsah {
+	background: #ebf5fc URL("../img/obsah_bg.png") repeat-x top left;
+	padding-bottom: 1ex;
+}
+
+
+#obsah a         { color: #006600; }
+#obsah a:active  { color: #0000ff; }
+#obsah a:visited { color: #005500; }
+
+
+
+/**  Odsazeni textu od okraje  **/
+#obsah p { margin: 0 1em; }
+
+#obsah p,
+#obsah table { margin-bottom: 1.6ex; }
+
+
+
+/* Cervenozlutej nadpis v obsahu */
+#obsah h1, 
+#obsah h2 {
+	/*height: 22px;
+	vertical-align: bottom; */
+	font-family: Arial CE, Arial, Helvetica, sans-serif; font-weight: bold;
+	padding-top: 2px; padding-bottom: 0px;
+	border-top: 1px solid black;  border-bottom: 1px solid black;
+	
+	/* obrazek na pozadi */
+	background-image: URL("../img/newsbreak_y8b.jpg");
+	background-color: #ffffff;
+	padding-left: 78px;
+	background-attachment: scroll;
+	background-repeat: repeat-y;
+}
+#obsah h1 a,
+#obsah h2 a { text-decoration: none; }
+
+#obsah h1 {
+  font-size: 18pt;
+  margin-top: 0;
+  margin-bottom: 0.6em;
+}
+#obsah h2 {
+  font-size: 11pt;
+  margin-top: 3.5ex;
+  margin-bottom: 1.2em;
+}
+
+#obsah h3 { padding-left: 1em; }
+
+
+
+/* Obrazky */
+body #obsah img { border: 1px solid black; margin-bottom: 2ex; }
+body #obsah table img { margin-bottom: 0; }
+body #obsah img.left  { float: left;  margin-right: 1.3em;  }
+body #obsah img.right { float: right; margin-left:  1.3em;  }
+body #obsah img.bez_okraje { border: none; }
+body #obsah img.no_margin { margin: 0; }
+
+
+#obsah blockquote {
+  border-top: 1px solid gray;
+  border-bottom: 1px solid gray;
+  background-color: white;
+
+  padding: 1ex 1em;
+  opacity: 10%;
+}
+
+#obsah dl {
+  padding: 1ex 1em;
+}
+#obsah dl dt { font-weight: bold; }
+
+
+
+/*  Kod  */
+
+#obsah pre /* code */ {
+  display: block;
+  padding: 1ex 1em;
+  
+  max-width: 800px;
+  overflow: auto;
+  
+  border: 1px solid gray;
+  background-color: #FEFEFE;
+}
+
+
+/** Tabulky **/
+#obsah table { border-collapse: collapse; }
+#obsah table tr th,
+#obsah table tr td { border: 1px solid gray; padding: 0.1ex 0.2em; }
+#obsah table tr th { background-color: #F2F2FF; }
+#obsah table tr td { background-color: white; }
+
+
+
+
+
+/***** Kontakty *****/
+.kontakty table    { margin-left:   50px; }
+.kontakty table td { padding-right: 1em; font-size: 120%; vertical-align: top; }
+
