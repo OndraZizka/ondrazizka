@@ -19,7 +19,8 @@
   <!-- Configuration files. -->
   <bean id="properties" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
     <property name="locations"><list>
-      <value>classpath:properties/internal.properties</value>
+      <value>classpath:config/internal.properties</value>
+      <value>classpath:config/jdbc.properties</value>
       <value>file:conf/${profile}/settings.properties</value>
       <value>file:settings.properties</value>
     </list></property>

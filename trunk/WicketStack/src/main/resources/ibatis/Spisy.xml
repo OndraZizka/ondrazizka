@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN" "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="TestEntity">
+  
+  <insert id="createIfNotExists" parameterClass="string">
+    INSERT IGNORE INTO wic_testentity SET znacka = #value#
+  </insert>
+  
+  <select id="byId" resultClass="cz.dw.wicket.stack.ent.TestEntity">
+    SELECT * FROM wic_testentity WHERE id = #id#
+  </select>
+
+  <update id="setValue" parameterClass="cz.dw.wicket.stack.ent.TestEntity">
+    UPDATE wic_testentity SET value = #value# WHERE id = #id#
+  </update>
+
+  
+</sqlMap>

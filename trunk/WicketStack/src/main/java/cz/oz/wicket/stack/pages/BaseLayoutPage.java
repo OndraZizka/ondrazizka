@@ -1,7 +1,8 @@
 
-package cz.oz.wicket.stack;
+package cz.oz.wicket.stack.pages;
 
 
+import cz.oz.wicket.stack.StackApp;
 import java.util.logging.*;
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.markup.html.WebPage;

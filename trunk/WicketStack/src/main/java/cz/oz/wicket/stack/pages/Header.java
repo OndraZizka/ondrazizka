@@ -1,5 +1,5 @@
 
-package cz.oz.wicket.stack;
+package cz.oz.wicket.stack.pages;
 
 
 import java.text.SimpleDateFormat;
