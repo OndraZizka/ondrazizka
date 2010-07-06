@@ -1,6 +1,6 @@
 package cz.dw.test;
 
-import cz.dw.test.pages.HomePage;
+import cz.oz.wicket.stack.HomePage;
 import cz.oz.wicket.stack.StackApp;
 import junit.framework.TestCase;
 import org.apache.wicket.util.tester.WicketTester;
