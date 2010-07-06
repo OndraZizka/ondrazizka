@@ -29,18 +29,8 @@
   </transactionManager>
   -->
 
-  
-  <sqlMap resource="ibatis-maps/Udalosti.xml"/>
-  <sqlMap resource="ibatis-maps/Spisy.xml"/>
-  <sqlMap resource="ibatis-maps/OsobyAdresy.xml"/>
-  <sqlMap resource="ibatis-maps/Users.xml"/>
-  <sqlMap resource="ibatis-maps/SledovaneSubjekty.xml"/>
-  <sqlMap resource="ibatis-maps/ruzne.xml"/>
-  <sqlMap resource="ibatis-maps/KontrolaDluzniku.xml"/>
-  <sqlMap resource="ibatis-maps/Mails.xml"/>
-  <sqlMap resource="ibatis-maps/TestQueries.xml"/>
-  <sqlMap resource="ibatis-maps/UdalostiQueue.xml"/>
 
-  <sqlMap resource="ibatis-maps/TestMatching.xml"/>
+  <sqlMap resource="ibatis/Spisy.xml"/>
+  <!-- Add more ... -->
 
 </sqlMapConfig>

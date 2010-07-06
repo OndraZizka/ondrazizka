@@ -2,55 +2,16 @@
 <!DOCTYPE beans PUBLIC '-//SPRING//DTD BEAN 2.0//EN' 'http://www.springframework.org/dtd/spring-beans-2.0.dtd'>
 <beans>
   
-  <bean id="spisDao" class="cz.dynawest.isir.dao.SpisDaoImpl">
-    <property name="entityManagerFactory" ref="emf"/>
-    <property name="ibatis" ref="iBatis"/>
-  </bean>
-  
-  <bean id="udalostDao" class="cz.dynawest.isir.dao.UdalostDaoImpl">
-    <property name="entityManagerFactory" ref="emf"/>
-    <property name="ibatis" ref="iBatis"/>
-  </bean>
-  
-  <bean id="osobaDao" class="cz.dynawest.isir.dao.OsobaDaoImpl">
+
+  <bean id="testEntityDao" class="cz.dw.wicket.stack.dao.TestEntityDaoImpl">
     <property name="entityManagerFactory" ref="emf"/>
     <property name="ibatis" ref="iBatis"/>
   </bean>
 
-  <bean id="userDao" class="cz.dynawest.isir.dao.UserDaoImpl">
-    <property name="entityManagerFactory" ref="emf"/>
-    <property name="ibatis" ref="iBatis"/>
+  <bean id="daoFactory" class="cz.dw.wicket.stack.dao.DaoFactory">
+    <property name="testEntityDao" ref="testEntityDao" />
   </bean>
-  
-  <bean id="sledovanySubjektDao" class="cz.dynawest.isir.dao.SledovanySubjektDaoImpl">
-    <property name="entityManagerFactory" ref="emf"/>
-    <property name="ibatis" ref="iBatis"/>
-  </bean>
-	<alias name="sledovanySubjektDao" alias="vzorDao"/>
-
-  <bean id="anketaDao" class="cz.dynawest.isir.dao.AnketaDaoImpl">
-    <property name="entityManagerFactory" ref="emf"/>
-    <property name="ibatis" ref="iBatis"/>
-  </bean>
-
-  <bean id="udalostQueueDao" class="cz.dynawest.isir.dao.UdalostiQueueDaoImpl">
-    <property name="entityManagerFactory" ref="emf"/>
-    <property name="ibatis" ref="iBatis"/>
-  </bean>
-
-  <bean id="mailQueueDao" class="cz.dynawest.isir.dao.MailQueueDaoImpl">
-    <property name="entityManagerFactory" ref="emf"/>
-    <property name="ibatis" ref="iBatis"/>
-  </bean>
-
-  <bean id="backendDaoFactory" class="cz.dynawest.isir.dao.DaoFactoryImpl">
-      <property name="osobaDao" ref="osobaDao"/>
-      <property name="sledovanySubjektDao" ref="sledovanySubjektDao"/>
-      <property name="spisDao" ref="spisDao"/>
-      <property name="udalostDao" ref="udalostDao"/>
-      <property name="userDao" ref="userDao"/>
-  </bean>
-  <alias name="backendDaoFactory" alias="daoFactory"/>
+  <alias name="backendDaoFactory" alias="daos"/>
 
 
 </beans>

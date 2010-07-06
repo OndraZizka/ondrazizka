@@ -108,6 +108,11 @@
       <dependency> <groupId>org.apache.wicket</groupId>	<artifactId>wicket-extensions</artifactId> <version>${wicket.version}</version> </dependency>
 		-->
 
+    <dependency>
+      <groupId>cz.dynawest.lib</groupId>
+      <artifactId>DwLib</artifactId>
+      <version>1.01</version>
+    </dependency>
 
     <!-- Spring + AspectJ -->
     <dependency>
