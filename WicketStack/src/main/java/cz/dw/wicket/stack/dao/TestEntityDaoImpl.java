@@ -32,7 +32,7 @@ public class TestEntityDaoImpl extends JpaDaoSupport  implements TestEntityDao
     return (TestEntity) this.getJpaTemplate().execute( new JpaCallback() {
       @Override
       public Object doInJpa( EntityManager em ) throws PersistenceException {
-        Query query = em.createNativeQuery( "SELECT 1 AS id, 'This is a value.' AS value", TestEntity.class );
+        Query query = em.createNativeQuery( "SELECT 666 AS id, 'This is a value.' AS value", TestEntity.class );
         return query.getSingleResult();
       }
     }, true);
