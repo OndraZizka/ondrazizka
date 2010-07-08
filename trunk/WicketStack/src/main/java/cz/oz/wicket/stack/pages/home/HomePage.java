@@ -28,11 +28,11 @@ public class HomePage extends BaseLayoutPage
     TestEntityDao dao = StackApp.getDaoFactory().getTestEntityDao();
 
     //add( new Label( "content", "Obsah clanku.") );
-    add( new RepeatingView("content") )
+    add( new RepeatingView("content")
       .add( new Label( "1", "Obsah clanku.") )
       .add( new Label( "2", dao.createSyntheticTestEntity().getValue() ) )
-      .add( new Label( "value", new CompoundPropertyModel<TestEntityDao>( dao.createSyntheticTestEntity() ) ) );
-    ;
+      .add( new Label( "value", new CompoundPropertyModel<TestEntityDao>( dao.createSyntheticTestEntity() )) )
+    );
   }
 
 
