@@ -1,5 +1,5 @@
 
-package cz.dw.wicket.stack.dao;
+package cz.oz.wicket.stack.dao;
 
 /**
  *

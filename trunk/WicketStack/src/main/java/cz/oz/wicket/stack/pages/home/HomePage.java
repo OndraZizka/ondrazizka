@@ -2,7 +2,7 @@
 package cz.oz.wicket.stack.pages.home;
 
 
-import cz.dw.wicket.stack.dao.TestEntityDao;
+import cz.oz.wicket.stack.dao.TestEntityDao;
 import cz.oz.*;
 import cz.oz.wicket.stack.StackApp;
 import cz.oz.wicket.stack.pages.BaseLayoutPage;

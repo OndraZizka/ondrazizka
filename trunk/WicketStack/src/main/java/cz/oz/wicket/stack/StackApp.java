@@ -2,8 +2,9 @@ package cz.oz.wicket.stack;
 
 import cz.oz.wicket.stack.pages.home.HomePage;
 import cz.oz.*;
-import cz.dw.wicket.stack.dao.DaoFactory;
+import cz.oz.wicket.stack.dao.DaoFactory;
 import cz.dynawest.logging.LoggingUtils;
+import cz.oz.wicket.stack.pages.form.FormPage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -12,6 +13,7 @@ import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import org.apache.wicket.protocol.http.WebApplication;
+import org.apache.wicket.request.target.coding.BookmarkablePageRequestTargetUrlCodingStrategy;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -55,6 +57,8 @@ public class StackApp extends WebApplication
 
     String sProfile = "default";
 
+    initLogging( sProfile );
+
     // -- Spring Bean Factory -- //
 
     // Pokud je nastavený parametr profile, pošleme jej do Spring konfigurace.
@@ -73,7 +77,7 @@ public class StackApp extends WebApplication
 
     // -- Wicket stuff -- //
 
-		//mount( new PathUrlCodingStrategy("page1", Page1.class));
+		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "form", FormPage.class, null));
 
   }
 

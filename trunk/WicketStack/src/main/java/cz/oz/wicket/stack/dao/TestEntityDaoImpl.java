@@ -1,9 +1,9 @@
 
-package cz.dw.wicket.stack.dao;
+package cz.oz.wicket.stack.dao;
 
 
 import com.ibatis.sqlmap.client.SqlMapClient;
-import cz.dw.wicket.stack.ent.TestEntity;
+import cz.oz.wicket.stack.ent.TestEntity;
 import java.util.*;
 import java.util.logging.*;
 import javax.persistence.EntityManager;
