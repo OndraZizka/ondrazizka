@@ -7,11 +7,11 @@
     INSERT IGNORE INTO wic_testentity SET znacka = #value#
   </insert>
   
-  <select id="byId" resultClass="cz.dw.wicket.stack.ent.TestEntity">
+  <select id="byId" resultClass="cz.oz.wicket.stack.ent.TestEntity">
     SELECT * FROM wic_testentity WHERE id = #id#
   </select>
 
-  <update id="setValue" parameterClass="cz.dw.wicket.stack.ent.TestEntity">
+  <update id="setValue" parameterClass="cz.oz.wicket.stack.ent.TestEntity">
     UPDATE wic_testentity SET value = #value# WHERE id = #id#
   </update>
 

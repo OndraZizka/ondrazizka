@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="windows-1250" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2010-07-11T05:21:32</date>
+  <millis>1278818492972</millis>
+  <sequence>2</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>Properties:</message>
+</record>
+<record>
+  <date>2010-07-11T05:21:32</date>
+  <millis>1278818492972</millis>
+  <sequence>3</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    has.internal: true</message>
+</record>
+<record>
+  <date>2010-07-11T05:21:33</date>
+  <millis>1278818493050</millis>
+  <sequence>4</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    hibernate.format_sql: false</message>
+</record>
+<record>
+  <date>2010-07-11T05:21:33</date>
+  <millis>1278818493050</millis>
+  <sequence>5</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    hibernate.showSql: false</message>
+</record>
+<record>
+  <date>2010-07-11T05:21:33</date>
+  <millis>1278818493050</millis>
+  <sequence>6</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.driver: com.mysql.jdbc.Driver</message>
+</record>
+<record>
+  <date>2010-07-11T05:21:33</date>
+  <millis>1278818493050</millis>
+  <sequence>7</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.password: (hidden)</message>
+</record>
+<record>
+  <date>2010-07-11T05:21:33</date>
+  <millis>1278818493050</millis>
+  <sequence>8</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.url: jdbc:mysql://localhost:3350/test?characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull</message>
+</record>
+<record>
+  <date>2010-07-11T05:21:33</date>
+  <millis>1278818493050</millis>
+  <sequence>9</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.username: test</message>
+</record>
+<?xml version="1.0" encoding="windows-1250" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2010-07-11T05:31:23</date>
+  <millis>1278819083190</millis>
+  <sequence>2</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>Properties:</message>
+</record>
+<record>
+  <date>2010-07-11T05:31:23</date>
+  <millis>1278819083190</millis>
+  <sequence>3</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    has.internal: true</message>
+</record>
+<record>
+  <date>2010-07-11T05:31:23</date>
+  <millis>1278819083190</millis>
+  <sequence>4</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    hibernate.format_sql: false</message>
+</record>
+<record>
+  <date>2010-07-11T05:31:23</date>
+  <millis>1278819083190</millis>
+  <sequence>5</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    hibernate.showSql: false</message>
+</record>
+<record>
+  <date>2010-07-11T05:31:23</date>
+  <millis>1278819083190</millis>
+  <sequence>6</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.driver: com.mysql.jdbc.Driver</message>
+</record>
+<record>
+  <date>2010-07-11T05:31:23</date>
+  <millis>1278819083190</millis>
+  <sequence>7</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.password: (hidden)</message>
+</record>
+<record>
+  <date>2010-07-11T05:31:23</date>
+  <millis>1278819083190</millis>
+  <sequence>8</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.url: jdbc:mysql://localhost:3350/test?characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull</message>
+</record>
+<record>
+  <date>2010-07-11T05:31:23</date>
+  <millis>1278819083190</millis>
+  <sequence>9</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.username: test</message>
+</record>
+11.7.2010 5:39:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:   Properties:
+11.7.2010 5:39:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       has.internal: true
+11.7.2010 5:39:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       hibernate.format_sql: false
+11.7.2010 5:39:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       hibernate.showSql: false
+11.7.2010 5:39:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.driver: com.mysql.jdbc.Driver
+11.7.2010 5:39:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.password: (hidden)
+11.7.2010 5:39:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.url: jdbc:mysql://localhost:3350/test?characterEncoding=UTF-8&characterSetResults=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+11.7.2010 5:39:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.username: test
+<?xml version="1.0" encoding="windows-1250" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2010-07-11T05:40:47</date>
+  <millis>1278819647737</millis>
+  <sequence>2</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>Properties:</message>
+</record>
+<record>
+  <date>2010-07-11T05:40:47</date>
+  <millis>1278819647737</millis>
+  <sequence>3</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    has.internal: true</message>
+</record>
+<record>
+  <date>2010-07-11T05:40:47</date>
+  <millis>1278819647737</millis>
+  <sequence>4</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    hibernate.format_sql: false</message>
+</record>
+<record>
+  <date>2010-07-11T05:40:47</date>
+  <millis>1278819647737</millis>
+  <sequence>5</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    hibernate.showSql: false</message>
+</record>
+<record>
+  <date>2010-07-11T05:40:47</date>
+  <millis>1278819647737</millis>
+  <sequence>6</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.driver: com.mysql.jdbc.Driver</message>
+</record>
+<record>
+  <date>2010-07-11T05:40:47</date>
+  <millis>1278819647737</millis>
+  <sequence>7</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.password: (hidden)</message>
+</record>
+<record>
+  <date>2010-07-11T05:40:47</date>
+  <millis>1278819647737</millis>
+  <sequence>8</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.url: jdbc:mysql://localhost:3350/test?characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull</message>
+</record>
+<record>
+  <date>2010-07-11T05:40:47</date>
+  <millis>1278819647737</millis>
+  <sequence>9</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.username: test</message>
+</record>
+11.7.2010 5:41:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:   Properties:
+11.7.2010 5:41:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       has.internal: true
+11.7.2010 5:41:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       hibernate.format_sql: false
+11.7.2010 5:41:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       hibernate.showSql: false
+11.7.2010 5:41:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.driver: com.mysql.jdbc.Driver
+11.7.2010 5:41:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.password: (hidden)
+11.7.2010 5:41:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.url: jdbc:mysql://localhost:3350/test?characterEncoding=UTF-8&characterSetResults=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+11.7.2010 5:41:23 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.username: test
+11.7.2010 5:41:59 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:   Properties:
+11.7.2010 5:41:59 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       has.internal: true
+11.7.2010 5:41:59 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       hibernate.format_sql: false
+11.7.2010 5:41:59 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       hibernate.showSql: false
+11.7.2010 5:41:59 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.driver: com.mysql.jdbc.Driver
+11.7.2010 5:41:59 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.password: (hidden)
+11.7.2010 5:41:59 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.url: jdbc:mysql://localhost:3350/test?characterEncoding=UTF-8&characterSetResults=UTF-8&autoReconnect=true&zeroDateTimeBehavior=convertToNull
+11.7.2010 5:41:59 cz.dynawest.util.DumpPropertiesBean setProperties - INFO:       jdbc.username: test
+<?xml version="1.0" encoding="windows-1250" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2010-07-11T05:42:04</date>
+  <millis>1278819724925</millis>
+  <sequence>2</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>Properties:</message>
+</record>
+<record>
+  <date>2010-07-11T05:42:04</date>
+  <millis>1278819724940</millis>
+  <sequence>3</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    has.internal: true</message>
+</record>
+<record>
+  <date>2010-07-11T05:42:04</date>
+  <millis>1278819724940</millis>
+  <sequence>4</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    hibernate.format_sql: false</message>
+</record>
+<record>
+  <date>2010-07-11T05:42:04</date>
+  <millis>1278819724940</millis>
+  <sequence>5</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    hibernate.showSql: false</message>
+</record>
+<record>
+  <date>2010-07-11T05:42:04</date>
+  <millis>1278819724940</millis>
+  <sequence>6</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.driver: com.mysql.jdbc.Driver</message>
+</record>
+<record>
+  <date>2010-07-11T05:42:04</date>
+  <millis>1278819724940</millis>
+  <sequence>7</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.password: (hidden)</message>
+</record>
+<record>
+  <date>2010-07-11T05:42:04</date>
+  <millis>1278819724940</millis>
+  <sequence>8</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.url: jdbc:mysql://localhost:3350/test?characterEncoding=UTF-8&amp;characterSetResults=UTF-8&amp;autoReconnect=true&amp;zeroDateTimeBehavior=convertToNull</message>
+</record>
+<record>
+  <date>2010-07-11T05:42:04</date>
+  <millis>1278819724940</millis>
+  <sequence>9</sequence>
+  <logger>cz.dynawest.util.DumpPropertiesBean</logger>
+  <level>INFO</level>
+  <class>cz.dynawest.util.DumpPropertiesBean</class>
+  <method>setProperties</method>
+  <thread>10</thread>
+  <message>    jdbc.username: test</message>
+</record>

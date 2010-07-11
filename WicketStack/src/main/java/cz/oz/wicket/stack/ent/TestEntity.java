@@ -1,5 +1,5 @@
 
-package cz.dw.wicket.stack.ent;
+package cz.oz.wicket.stack.ent;
 
 
 import java.io.Serializable;

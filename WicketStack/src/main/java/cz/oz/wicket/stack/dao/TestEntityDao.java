@@ -1,7 +1,7 @@
 
-package cz.dw.wicket.stack.dao;
+package cz.oz.wicket.stack.dao;
 
-import cz.dw.wicket.stack.ent.TestEntity;
+import cz.oz.wicket.stack.ent.TestEntity;
 import java.util.List;
 
 /**

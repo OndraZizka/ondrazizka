@@ -3,12 +3,12 @@
 <beans>
   
 
-  <bean id="testEntityDao" class="cz.dw.wicket.stack.dao.TestEntityDaoImpl">
+  <bean id="testEntityDao" class="cz.oz.wicket.stack.dao.TestEntityDaoImpl">
     <property name="entityManagerFactory" ref="emf"/>
     <property name="ibatis" ref="iBatis"/>
   </bean>
 
-  <bean id="daoFactory" class="cz.dw.wicket.stack.dao.DaoFactory">
+  <bean id="daoFactory" class="cz.oz.wicket.stack.dao.DaoFactory">
     <property name="testEntityDao" ref="testEntityDao" />
   </bean>
   <alias name="backendDaoFactory" alias="daos"/>
