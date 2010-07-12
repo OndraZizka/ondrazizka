@@ -9,6 +9,8 @@ import cz.oz.wicket.stack.pages.BaseLayoutPage;
 import java.util.Arrays;
 import java.util.logging.*;
 import org.apache.wicket.PageParameters;
+import org.apache.wicket.ajax.AjaxRequestTarget;
+import org.apache.wicket.ajax.markup.html.form.AjaxCheckBox;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.CheckBox;
 import org.apache.wicket.markup.html.form.DropDownChoice;
@@ -16,6 +18,7 @@ import org.apache.wicket.markup.html.form.EnumChoiceRenderer;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
+import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.repeater.RepeatingView;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.validation.validator.RangeValidator;
@@ -34,11 +37,11 @@ public class FormPage extends BaseLayoutPage
   public enum Choice { ONE, TWO, THREE }
 
   class FormData{
-    public String text;
-    public String longText;
-    public String number;
-    public boolean checkbox;
-    public Choice choice;
+    public String text = "This is text.";
+    public String longText = "This is long text.";
+    public long number = 4;
+    public boolean checkbox = true;
+    public Choice choice = Choice.TWO;
   }
 
 
@@ -52,15 +55,36 @@ public class FormPage extends BaseLayoutPage
     TestEntityDao dao = StackApp.getDaoFactory().getTestEntityDao();
 
     //add( new Label( "content", "Obsah clanku.") );
-    add( new Form("form", new CompoundPropertyModel( this.data ))
-      .add( new TextField("text") )
-      .add( new TextArea( "longText") )
-      .add( new TextField("number").add(new RangeValidator(0L, 5L)) )
-      .add( new CheckBox("checkbox"))
-      .add( new DropDownChoice("choice",
-         Arrays.asList( Choice.values() ), new EnumChoiceRenderer() )
-       )
-    );
+
+    add( new FeedbackPanel("feedback") );
+
+    Form form = new Form("form", new CompoundPropertyModel( this.data )){
+      @Override protected void onSubmit() {
+        info("Ool Korrect.");
+      }
+      @Override protected void onError() {
+        error("Nay!");
+      }
+    };
+    add( form );
+      form.add( new TextField("text") );
+      form.add( new TextArea("longText") );
+      form.add( new TextField("number").add(new RangeValidator(0L, 5L)) );
+
+      final DropDownChoice ddChoice = 
+        new DropDownChoice("choice", Arrays.asList( Choice.values() ), new EnumChoiceRenderer(this) );
+      ddChoice.setOutputMarkupId(true);
+
+      form.add( new AjaxCheckBox("checkbox"){
+        @Override
+        protected void onUpdate( AjaxRequestTarget target ) {
+          target.addComponent( ddChoice );
+          ddChoice.setEnabled( this.getModelObject() );
+        }
+      });
+      
+      form.add( ddChoice );
+    
   }
 
 
