@@ -75,7 +75,7 @@
   <!-- See: http://blog.springsource.com/2006/05/30/getting-started-with-jpa-in-spring-20/ -->
   <!-- Docs: http://static.springframework.org/spring/docs/2.5.x/api/org/springframework/orm/jpa/LocalContainerEntityManagerFactoryBean.html -->
   <bean id="emf" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-    <property name="persistenceUnitName" value="ISIR_PU"/>
+    <property name="persistenceUnitName" value="TEST_PU"/>
     <!-- Snažím se, aby to netahalo z persistence.xml: -->
     <property name="dataSource" ref="pooledDataSource"/>
     <property name="jpaVendorAdapter">
