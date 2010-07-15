@@ -1,5 +1,6 @@
 package cz.oz.wicket.stack.pages.hbn;
 
+import cz.oz.wicket.stack.StackApp;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.hibernate.SessionFactory;
+import org.hibernate.impl.SessionImpl;
 import org.hibernate.stat.CollectionStatistics;
 import org.hibernate.stat.EntityStatistics;
 import org.hibernate.stat.QueryStatistics;
@@ -21,20 +23,36 @@ import org.hibernate.stat.SecondLevelCacheStatistics;
 import org.hibernate.stat.Statistics;
 
 import cz.oz.wicket.stack.pages.BaseLayoutPage;
+import javax.persistence.EntityManagerFactory;
+import org.hibernate.stat.SessionStatistics;
 
 
 public class HibernateStatsPage extends BaseLayoutPage {
 	
-    @SpringBean(name = "sessionFactory")
-    private SessionFactory sf = StackApp.;
+    //@SpringBean(name = "sessionFactory")
+    //private SessionFactory sf = StackApp.getBean("emf");
+
+		private EntityManagerFactory emf = (EntityManagerFactory) StackApp.getBean("emf");
+
+		private SessionFactory sf;
+
 
     public HibernateStatsPage(PageParameters parameters) {
         super(parameters);
 
+				Object delegate = emf.createEntityManager().getDelegate(); // SessionImpl
+				System.out.println("EMF delegate:" +  delegate.getClass().getName() );
+				SessionImpl si = (SessionImpl) delegate;
+				this.sf = si.getSessionFactory();
+				//SessionStatistics stats = si.getStatistics();
+
+
         final WebMarkupContainer st = new WebMarkupContainer("stats");
         final CompoundPropertyModel model = new CompoundPropertyModel(new LoadableDetachableModel() {
             protected Object load() {
-                return sf.getStatistics();
+                //return sf.getStatistics();
+								Statistics stats = HibernateStatsPage.this.sf.getStatistics();
+								return stats;
             }
         });
         st.setDefaultModel(model);
