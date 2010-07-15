@@ -30,7 +30,7 @@
   -->
 
 
-  <sqlMap resource="ibatis/Spisy.xml"/>
+  <sqlMap resource="ibatis/TestEntity.xml"/>
   <!-- Add more ... -->
 
 </sqlMapConfig>
