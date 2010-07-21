@@ -11,7 +11,7 @@
     </property>
   </bean>
 
-  <bean id="testBean" class="org.springframework.jmx.JmxTestBean">
+  <bean id="testBean" class=".JmxTestBean">
     <property name="name" value="TEST"/>
     <property name="age" value="100"/>
   </bean>
