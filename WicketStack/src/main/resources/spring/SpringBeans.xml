@@ -44,5 +44,8 @@
   
   <!-- FreeMarker -->
   <import resource="FreeMarker.xml"/>
-  
+
+  <!-- JMX -->
+  <import resource="JMX.xml"/>
+
 </beans>
