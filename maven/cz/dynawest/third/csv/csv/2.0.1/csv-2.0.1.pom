@@ -160,8 +160,6 @@
     <repository><id>ondrazizka-googlecode</id><url>http://ondrazizka.googlecode.com/svn/maven</url></repository>
     <!-- Hibernate -->
     <repository><id>jboss</id><url>https://repository.jboss.org/nexus/content/groups/public</url></repository>
-    <!-- Hibernate 3.5 -->
-    <repository> <id>jboss-old</id> <name>JBoss repository</name> <url>http://repository.jboss.org/maven2</url> </repository>
   </repositories>
 
 </project>
