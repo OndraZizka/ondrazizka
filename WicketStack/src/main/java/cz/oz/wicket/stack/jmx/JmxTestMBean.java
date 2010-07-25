@@ -7,6 +7,8 @@ package cz.oz.wicket.stack.jmx;
  */
 public interface JmxTestMBean {
 
-  
+    public int getUsersTotal();
+    public void setUsersTotal( int usersTotal );
+
 
 }// class JmxTestMBean
