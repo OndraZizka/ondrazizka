@@ -18,4 +18,16 @@ public class JmxTestMBeanImpl implements JmxTestMBean
   @Override public int getUsersTotal() {    return usersTotal;  }
   @Override public void setUsersTotal( int usersTotal ) {    this.usersTotal = usersTotal;  }
 
+  
+  public void sayHello(){
+
+    System.out.println( "*** sayHello() called. ***" );
+
+  }
+
+  public static void main(String[] args){
+    new JmxTestMBeanImpl().sayHello();
+  }
+
+
 }// class JmxTestMBeanImpl
