@@ -1,0 +1,12 @@
+## jobName, buildNumber, config, ar, arFile, deployDur, warmupDur, scale
+'eap-5.1.0-perf-deployers', 355,'production','testdata/war/hellothere.war','hellothere.war',10282,14804,1000
+'eap-5.1.0-perf-deployers', 355,'production','testdata/ear/EarWithWar-Counter.ear','EarWithWar-Counter.ear',11005,18904,1000
+'eap-5.1.0-perf-deployers', 355,'production','testdata-own/war/war-big-1.0.war','war-big-1.0.war',1966,14800,100
+'eap-5.1.0-perf-deployers', 355,'production','testdata-own/ds/BigDatasource-ds.xml','BigDatasource-ds.xml',9563,10178,1
+'eap-5.1.0-perf-deployers', 355,'production','testdata-own/war/JsfJpa.war','JsfJpa.war',100,132,10
+'eap-5.1.0-perf-deployers', 355,'production','testdata/aop/aop-annotated.aop','aop-annotated.aop',7286,6212,10
+'eap-5.1.0-perf-deployers', 355,'production','testdata/beans/testkernel-dependspojo.beans','testkernel-dependspojo.beans',819,1116,10
+'eap-5.1.0-perf-deployers', 355,'production','testdata/sar/aop-annotated.sar','aop-annotated.sar',6447,5473,10
+'eap-5.1.0-perf-deployers', 355,'production','testdata/rar/jbosstestadapter.rar','jbosstestadapter.rar',116,256,10
+'eap-5.1.0-perf-deployers', 355,'production','testdata/har/hib-test.har','hib-test.har',1051,3664,10
+'eap-5.1.0-perf-deployers', 355,'production','testdata/service/test-default-scheduler-service.xml','test-default-scheduler-service.xml',777,1112,10
