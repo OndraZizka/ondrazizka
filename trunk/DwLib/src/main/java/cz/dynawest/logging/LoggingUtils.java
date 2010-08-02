@@ -31,7 +31,7 @@ public class LoggingUtils
   public static void initLogging( String filePath ){
 
     boolean wasFromSysProp = true;
-    String logConfigFile = System.getProperty("java.util.logging.config.file");
+    String logConfigFile = System.getProperty("java.util.logging.config.file", System.getProperty("jul.config.file"));
     if( logConfigFile == null ){
       logConfigFile = filePath;
       wasFromSysProp = false;
@@ -43,10 +43,14 @@ public class LoggingUtils
         is = LoggingUtils.class.getResourceAsStream( logConfigFile.substring(1) );
         // "Use getClass().getClassLoader().findResource("path") instead."
       }else{
-        is = new FileInputStream(logConfigFile);
+        try{
+          is = new FileInputStream(logConfigFile);
+        }catch( IOException ex ){
+          is = null;
+        }
       }
 
-			log.info("Loading logging conf from: "+logConfigFile + (!wasFromSysProp ? "" : " (set in sys var java.util.logging.config.file)") );
+			log.info("Loading logging conf from: "+logConfigFile + (!wasFromSysProp ? "" : " (set in sys var jul.config.file)") );
       if( is == null ){
         log.warning("Log config file not found: "+logConfigFile+ "  Using LoggingUtils' default.");
         logConfigFile = DW_DEFAULT_PROPS_PATH;
