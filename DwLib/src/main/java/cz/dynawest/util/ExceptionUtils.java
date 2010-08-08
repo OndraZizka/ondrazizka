@@ -46,11 +46,35 @@ public class ExceptionUtils
       ex = ex.getCause();
 
       // Loop-prevention.
-      if( ++i > 100 )
+      if( ++i == 64 )
         break;
     }
     
     return false;
   }
 
+
+
+  /**
+   * @returns  the first cause which is of class cls.
+   */
+  public static Throwable findCauseByClass( Throwable ex, Class cls ){
+    
+    int i = 0;
+
+    while( null != ex ) {
+      if( cls.isInstance( ex ) )
+        return ex;
+      ex = ex.getCause();
+
+      // Loop-prevention.
+      if( ++i == 64 )
+        break;
+    }
+
+    return null;
+
+  }
+
+  
 }// class ExceptionUtils
