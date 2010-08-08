@@ -1,9 +1,3 @@
-/*
- * @(#)SimpleFormatter.java	1.15 05/11/17
- *
- * Copyright 2006 Sun Microsystems, Inc. All rights reserved.
- * SUN PROPRIETARY/CONFIDENTIAL. Use is subject to license terms.
- */
 package cz.dynawest.logging;
 
 import java.util.logging.*;
@@ -38,7 +32,7 @@ public class SimplestFormatter extends Formatter {
    */
   public synchronized String format(LogRecord record) {
     
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     
     /*
     // Minimize memory allocations here.
@@ -76,14 +70,14 @@ public class SimplestFormatter extends Formatter {
     //sb.append(record.getLevel().getLocalizedName());
     Level level = record.getLevel();
     if( level == Level.WARNING ){
-      sb.append("Varov�n�: ");
+      sb.append("Varování: ");
     }else if( level == Level.SEVERE ){
       sb.append("Chyba!    ");
     }else
       sb.append("          ");
     
 
-    // Samotn� zpr�va
+    // Samotná zpráva
     String message = formatMessage(record);
     sb.append(message);
     sb.append(lineSeparator);

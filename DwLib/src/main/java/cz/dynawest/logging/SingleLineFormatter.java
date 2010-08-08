@@ -38,7 +38,7 @@ public class SingleLineFormatter extends Formatter {
    */
   public synchronized String format(LogRecord record) {
     
-    StringBuffer sb = new StringBuffer();
+    StringBuilder sb = new StringBuilder();
     
     // Minimize memory allocations here.
     dat.setTime(record.getMillis());    
