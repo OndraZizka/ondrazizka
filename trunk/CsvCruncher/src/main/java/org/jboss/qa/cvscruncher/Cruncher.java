@@ -37,6 +37,17 @@ public class Cruncher
 			protected String sql;
 			protected String csvPathOut;
 			protected String dbPath = null;
+
+			public boolean isFilled(){ return csvPathIn != null && csvPathOut != null && sql != null; }
+
+			public String toString(){
+				return new StringBuilder()
+					.append("\n    dbPath: ").append(this.dbPath)
+					.append("\n    csvPathIn: ").append(this.csvPathIn)
+					.append("\n    csvPathOut: ").append(this.csvPathOut)
+					.append("\n    sql: ").append(this.sql)
+					.toString();
+			}
 		}
 
 
@@ -52,10 +63,20 @@ public class Cruncher
 
 
 		private void init() throws ClassNotFoundException, SQLException {
+
+				System.setProperty("textdb.allow_full_path", "true");
+
 				// "Connect" to the db.
 				Class.forName("org.hsqldb.jdbc.JDBCDriver");
+				// TODO: Problem: HSQLDB reads CSV only from it's dir!
 				String dbPath = StringUtils.defaultIfEmpty( this.options.dbPath, "hsqldb") + "/cruncher";
 				this.conn = DriverManager.getConnection("jdbc:hsqldb:file:"+dbPath+";shutdown=true", "SA", "");
+
+				/*
+				  File locations are restricted to below the directory that contains the database,
+				  unless the textdb.allow_full_path property is set true as a Java system property.
+				  This feature is for security, otherwise an admin database user may be able to open random files.
+				 */
 		}
 		
 
@@ -69,6 +90,13 @@ public class Cruncher
 		 */
 		public void crunch() throws Exception {
 			try {
+
+				if( this.options.csvPathIn == null )
+					throw new IllegalArgumentException(" -in is not set.");
+				if( this.options.sql == null )
+					throw new IllegalArgumentException(" -sql is not set.");
+				if( this.options.csvPathOut == null )
+					throw new IllegalArgumentException(" -out is not set.");
 
 				File file = new java.io.File( this.options.csvPathIn );
 				if( ! file.exists() )
@@ -101,12 +129,31 @@ public class Cruncher
 
 				try{
 
+					//File userDir = new File( System.getProperty("user.dir") );
+					File inFile   = getFileObject( this.options.csvPathIn );
+					File outFile  = getFileObject( this.options.csvPathOut );
+
+					log.info( this.options.toString() );
+					log.info("******* inPath: " + this.options.csvPathIn );
+					log.info("******* inFile: " + inFile.getPath() );
+
+
+
+					// Check input file existence.
+					if( ! inFile.exists() )
+						throw new FileNotFoundException("CSV file not found: "+inFile.getPath());
+
+					// Create parent dirs for the output.
+					outFile.getAbsoluteFile().getParentFile().mkdirs();
+
+
 					// Create the table for the CSV data.
 					String[] colNames = parseColsFromFirstLine( file );
-					createTableForCsvFile( "indata", this.options.csvPathIn, colNames, true );
+					createTableForCsvFile( "indata", inFile, colNames, true );
 					reachedStage = 1;
 
-					//testDumpSelect( conn, "indata" );
+					if( true )
+						testDumpSelect( "indata" );
 
 					// Perform the user-provided SQL statement.
 					PreparedStatement ps = conn.prepareStatement( options.sql );
@@ -121,7 +168,7 @@ public class Cruncher
 					// -- Dump data to output CSV file. -- //
 
 					// "Mount" the output CSV file.
-					createTableForCsvFile( "output", this.options.csvPathOut, colNames, true );
+					createTableForCsvFile( "output", outFile, colNames, true );
 					reachedStage = 2;
 
 					// Perform the user-provided SQL statement.
@@ -139,7 +186,8 @@ public class Cruncher
 					}*/
 
 					int rowsAffected = ps.executeUpdate();
-					testDumpSelect( "output" );
+					
+					//testDumpSelect( "output" );///
 
 
 				}
@@ -153,7 +201,7 @@ public class Cruncher
 				}
 			}
 			catch (Exception ex) {
-				log.log(Level.SEVERE, null, ex);
+				//log.log(Level.SEVERE, ex.getMessage(), ex);
 				throw ex;
 			}
 
@@ -177,7 +225,7 @@ public class Cruncher
 			List<String> cols = new ArrayList();
 			LineIterator lineIterator = FileUtils.lineIterator(file);
 			if( ! lineIterator.hasNext() )
-				throw new IllegalStateException("File has no first line with columns definition: [# ] <colName> [, ...] ");
+				throw new IllegalStateException("No first line with columns definition (format: [# ] <colName> [, ...]) in: "+file.getPath());
 
 			String line = lineIterator.nextLine();
 			line = StringUtils.stripStart(line, "#");
@@ -187,10 +235,10 @@ public class Cruncher
 			for (String colName : colNames) {
 				colName = colName.trim();
 				if( 0 == colName.length() )
-					throw new IllegalStateException("Empty column name (separators: ,; ) in " + file.getPath() );
+					throw new IllegalStateException("Empty column name (separators: ,; ) in: " + file.getPath() );
 
 				if( ! mat.reset(colName).matches() )
-					throw new IllegalStateException("Colname must be valid SQL identifier, i.e. must match /[a-z][a-z0-9]*/i in " + file.getPath() );
+					throw new IllegalStateException("Colname must be valid SQL identifier, i.e. must match /[a-z][a-z0-9]*/i in: " + file.getPath() );
 
 				cols.add( colName );
 			}
@@ -207,9 +255,10 @@ public class Cruncher
 		 * @param csvPathIn
 		 * @param colNames
 		 */
-		private void createTableForCsvFile( String tableName, String csvPathIn, String[] colNames, boolean ignoreFirst) throws SQLException
+		private void createTableForCsvFile( String tableName, File csvFileIn, String[] colNames, boolean ignoreFirst) throws SQLException, FileNotFoundException
 		{
 				tableName = StringEscapeUtils.escapeSql(tableName);
+				boolean readOnly = false; // TODO: Move to params.
 
 				// Create the CSV header.
 				// Create the CREATE statement.
@@ -219,7 +268,7 @@ public class Cruncher
 				for (String col : colNames) {
 					sbCsvHeader.append( col ).append(", ");
 					col = StringEscapeUtils.escapeSql( col );
-					sb.append( col ).append(" VARCHAR(255) NOT NULL, ");
+					sb.append( col ).append(" VARCHAR(255), "); // NOT NULL removed
 				}
 				sb.delete( sb.length() - 2, sb.length() );
 				sb.append(" )");
@@ -232,9 +281,13 @@ public class Cruncher
 
 
 				// Load the data from the CSV file.
+				String csvPathIn = csvFileIn.getPath();
 				csvPathIn = StringEscapeUtils.escapeSql(csvPathIn);
 				String ifFlag = ignoreFirst ? "ignore_first=true;" : "";
-				ps = this.conn.prepareStatement("SET TABLE "+tableName+" SOURCE '"+csvPathIn+";"+ifFlag+"fs=,' ");
+				String DESC = readOnly ? "DESC" : "";
+				String sql = "SET TABLE "+tableName+" SOURCE '"+csvPathIn+";"+ifFlag+"fs=,' "+DESC;
+				log.info("SQL: " + sql );
+				ps = this.conn.prepareStatement( sql );  // ;encoding=UTF-8
 				succ = ps.execute();
 
 				// TODO: When a text table is created with a new source (CSV) file, and ignore_first=true has been specified,
@@ -260,7 +313,7 @@ public class Cruncher
 			boolean succ = ps.execute();
 		}
 
-		private void testDumpSelect( String tableName) throws SQLException {
+		private void testDumpSelect( String tableName ) throws SQLException {
 				PreparedStatement ps = this.conn.prepareStatement("SELECT * FROM "+tableName);
 				ResultSet rs = ps.executeQuery();
 
@@ -272,4 +325,21 @@ public class Cruncher
 					}
 				}
 		}
+
+
+		/**
+		 * HSQLDB uses it's data dir for relative paths, thus we need to make them ourselves.
+		 * @param path  Relative or absolute path.
+		 * @returns     File object, if path is relative, then it's appended to the JVM's cwd.
+		 */
+		private File getFileObject(String path) {
+			if( ! path.isEmpty() && path.charAt(0) == '/' )
+				// Absolute
+				return new File( path );
+			else
+				// Relative, use current working dir.
+				return new File( System.getProperty("user.dir"), path );
+		}
+
+		
 }// class
