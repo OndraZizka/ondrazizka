@@ -1,19 +1,13 @@
 package org.jboss.qa.cvscruncher;
 
-import org.jboss.qa.cvscruncher.App;
-import csv.impl.CSVReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import org.apache.commons.lang.StringUtils;
+
+
+
 
 /**
  * Unit test for simple App.

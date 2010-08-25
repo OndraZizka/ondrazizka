@@ -1,5 +1,6 @@
 package org.jboss.qa.cvscruncher;
 
+import cz.dynawest.logging.LoggingUtils;
 import java.util.logging.Logger;
 
 /**
@@ -16,9 +17,19 @@ public class App
 		public static void main( String[] args ) throws Exception
 		{
 
-			Cruncher.Options options = parseArgs( args );
+			LoggingUtils.initLogging();
 
-			new Cruncher( options ).crunch();
+			Cruncher.Options options;
+			try {
+				options = parseArgs( args );
+				//options.dbPath = System.getProperty("user.dir");
+				new Cruncher( options ).crunch();
+			}
+			// Arguments error.
+			catch( IllegalArgumentException ex ){
+				System.out.println("" + ex.getMessage());
+				System.exit( 1 );
+			}
 
 		}
 
@@ -70,13 +81,29 @@ public class App
 				if( relPos == 1 ){ opt.csvPathOut = str; continue; }
 				if( relPos == 2 ){ opt.sql        = str; continue; }
 
-				throw new IllegalArgumentException("Wrong arguments. Usage: crunch [-in] <inCSV> [-out] <outCSV> [-sql] <SQL>");
+				throw new IllegalArgumentException("Wrong arguments. "+STR_USAGE);
 
 			}// for each arg.
+
+			if( ! opt.isFilled() ){
+				throw new IllegalArgumentException("Not enough arguments. "+STR_USAGE);
+			}
 
 			return opt;
 			
 		}// parseArgs();
+
+
+
+		/**
+		 *
+		 */
+		private static void printUsage() {
+			System.out.println("  Usage:");
+			System.out.println("    "+STR_USAGE);
+		}
+
+		public static final String STR_USAGE = "Usage: crunch [-in] <inCSV> [-out] <outCSV> [-sql] <SQL>";
 
 		
 		
