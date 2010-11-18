@@ -6,12 +6,12 @@ import cz.oz.wicket.stack.dao.DaoFactory;
 import cz.dynawest.logging.LoggingUtils;
 import cz.oz.wicket.stack.pages.form.FormPage;
 //import cz.oz.wicket.stack.pages.hbn.HibernateStatsPage;
+import cz.oz.wicket.stack.pages.i18n.TranslatedPage;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Properties;
 import java.util.logging.Level;
-import java.util.logging.LogManager;
 import java.util.logging.Logger;
 import org.apache.wicket.protocol.http.WebApplication;
 import org.apache.wicket.request.target.coding.BookmarkablePageRequestTargetUrlCodingStrategy;
@@ -80,6 +80,7 @@ public class StackApp extends WebApplication
 
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "form", FormPage.class, null));
 		//mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "hbn", HibernateStatsPage.class, null));
+		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "i18n", TranslatedPage.class, null));
 
   }
 
