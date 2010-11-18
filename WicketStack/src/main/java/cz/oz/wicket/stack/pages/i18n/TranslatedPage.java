@@ -10,7 +10,12 @@ import org.apache.wicket.PageParameters;
 
 
 /**
- *
+ * This page has a <select> for choosing locale.
+ * When changed, page is refreshed and rendered with choosen locale.
+ * 
+ * To apply this concept to your whole application,
+ * move the setLocale() method to some base page class.
+ * 
  * @author Ondrej Zizka
  */
 public class TranslatedPage extends BaseLayoutPage
