@@ -4,6 +4,7 @@ import cz.oz.wicket.stack.pages.home.HomePage;
 import cz.oz.*;
 import cz.oz.wicket.stack.dao.DaoFactory;
 import cz.dynawest.logging.LoggingUtils;
+import cz.oz.wicket.stack.pages.ir.BaseLayout2Page;
 import cz.oz.wicket.stack.pages.form.FormPage;
 //import cz.oz.wicket.stack.pages.hbn.HibernateStatsPage;
 import cz.oz.wicket.stack.pages.i18n.TranslatedPage;
@@ -81,6 +82,7 @@ public class StackApp extends WebApplication
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "form", FormPage.class, null));
 		//mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "hbn", HibernateStatsPage.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "i18n", TranslatedPage.class, null));
+		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "new", BaseLayout2Page.class, null));
 
   }
 
