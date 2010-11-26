@@ -5,6 +5,8 @@ package cz.dynawest.quartztry.quartztry;
 import org.quartz.Job;
 import org.quartz.JobExecutionContext;
 import org.quartz.JobExecutionException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 /**
@@ -13,16 +15,20 @@ import org.quartz.JobExecutionException;
  */
 public class MyJobClass implements Job {
 
+	private static final Logger log = LoggerFactory.getLogger(MyJobClass.class);
+
+
   private static int counter = 0;
   private static int inst = 0;
 
   public MyJobClass() {
-    System.out.println( "INSTANTIATED "+ ++inst +" times!" );
+    //System.out.println( "INSTANTIATED "+ ++inst +" times!" );
+		log.info("  INSTANTIATED "+ ++inst +" times!");
   }
 
   public void execute( JobExecutionContext context ) throws JobExecutionException {
-    System.out.println( "EXECUTED "+ ++counter +" times!" );
-    //throw new UnsupportedOperationException("WTF.");
+		try { Thread.sleep(2500); } catch (InterruptedException ex) { }
+    log.info("  EXECUTED "+ ++counter +" times!");
   }
 }
 // class MyJobClass

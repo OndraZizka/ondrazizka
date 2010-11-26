@@ -28,12 +28,12 @@ public class App
       // Define a Trigger that will fire "now"
       //Trigger trigger = new SimpleTrigger("trigger1", "group1", new Date());
       // Or this one will repeat 10 times after 100 ms.
-      Trigger trigger = new SimpleTrigger("trigger1", "group1", 10, 100);
+      Trigger trigger = new SimpleTrigger("trigger1", "group1", 100, 10);
 
       // Schedule the job with the trigger
       scheduler.scheduleJob(job, trigger);
 
-      Thread.sleep( 5000 );
+      Thread.sleep( 15000 );
 
       // Shutdown
       scheduler.shutdown();
