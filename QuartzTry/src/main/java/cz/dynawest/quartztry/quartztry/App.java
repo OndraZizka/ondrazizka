@@ -28,7 +28,7 @@ public class App
       // Define a Trigger that will fire "now"
       //Trigger trigger = new SimpleTrigger("trigger1", "group1", new Date());
       // Or this one will repeat 10 times after 100 ms.
-      Trigger trigger = new SimpleTrigger("trigger1", "group1", 100, 10);
+      Trigger trigger = new SimpleTrigger("trigger1", "group1", 100, 10);  // 100-times  after 10 ms.
 
       // Schedule the job with the trigger
       scheduler.scheduleJob(job, trigger);
