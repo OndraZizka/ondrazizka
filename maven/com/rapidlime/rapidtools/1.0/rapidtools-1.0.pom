@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.rapidlime</groupId>
+    <artifactId>rapidtools</artifactId>
+	<version>1.0</version>
+
+    <inceptionYear>2008</inceptionYear>
+
+    <packaging>jar</packaging>
+
+    <name>rapidtools</name>
+
+    
+	
+    <developers>
+        <developer>
+            <name>Musil Jiri</name>
+            <email>musil@rapidlime.com</email>
+            <id>musa</id>
+        </developer>
+    </developers>
+
+
+
+    <organization>
+        <name>Rapidlime s.r.o</name>
+        <url>www.rapidlime.com</url>
+    </organization>
+
+
+
+    <scm>
+        <connection>scm:svn:https://prj01.rapidlime.com/svn/rapidlime</connection>
+    </scm>
+
+
+	
+    <build>
+        <finalName>rapidtools</finalName>
+        <resources>
+            <resource>
+                <directory>src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+        </resources>
+        <plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+                            <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
+                            <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
+                            <addClasspath>true</addClasspath>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <verbose>false</verbose>
+                    <compilerVersion>1.6</compilerVersion>
+                    <source>1.6</source>
+                    <target>1.6</target>
+                    <encoding>utf-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+	
+
+	<repositories>
+		<repository>
+			<id>central</id>
+			<url>http://prj01.rapidlime.com:8080/archiva/repository/repo1</url> <!-- public Rapidlime repository with proxying of generally known public maven repositories -->
+		</repository>
+	</repositories>
+
+	
+	
+	<distributionManagement>
+        <repository>
+          <id>central-manager</id>
+          <url>http://prj01.rapidlime.com:8080/archiva/repository/repo1</url>
+        </repository>
+    </distributionManagement>
+
+
+
+    <dependencies>
+		<dependency>
+			<groupId>commons-lang</groupId>
+			<artifactId>commons-lang</artifactId>
+			<version>2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.plexus</groupId>
+			<artifactId>plexus-utils</artifactId>
+			<version>1.1</version>
+		</dependency>
+    </dependencies>
+</project>
