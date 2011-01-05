@@ -1,9 +1,6 @@
 
 package cz.poh.web.newdesign;
 
-import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.PropertyModel;
 
 /**
  *
@@ -18,15 +15,19 @@ public class HomePage extends BasePageLayout3 {
 
 		public HomePage() {
 
-				add(new Label("testContent", new PropertyModel<String>(this, "testContent")));
-
+				add( new HledaniPanel("hledaniPanel") );
 
 		}
 
 
-		public String getTestContent() {				return testContent;		}
-		public void setTestContent(String testContent) {				this.testContent = testContent;		}
+		// <editor-fold defaultstate="collapsed" desc="get/set">
+		public String getTestContent() {
+				return testContent;
+		}
 
+		public void setTestContent(String testContent) {
+				this.testContent = testContent;
+		}// </editor-fold>
 
 
 }// class
