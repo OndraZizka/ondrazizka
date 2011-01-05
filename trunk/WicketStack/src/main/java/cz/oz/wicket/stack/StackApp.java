@@ -86,6 +86,7 @@ public class StackApp extends WebApplication
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "i18n", TranslatedPage.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "new", BaseLayout2Page.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "new2", BasePageLayout3.class, null));
+		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "newhp", cz.poh.web.newdesign.HomePage.class, null));
 
   }
 
