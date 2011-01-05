@@ -14,5 +14,7 @@
       <property name="hibernate.cache.provider_class" value="org.hibernate.cache.NoCacheProvider"/>
     </properties>
     -->
+    <class>cz.poh.web.newdesign.model.CastoHledaneItem</class>
+    <class>cz.poh.web.newdesign.model.Clanek</class>
   </persistence-unit>
 </persistence>
