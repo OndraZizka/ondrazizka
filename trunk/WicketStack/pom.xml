@@ -12,11 +12,11 @@
 	<description>Wicket quickstart app with Spring, Hibernate, iBatis, slf4j, pooled DB conn's, FreeMarker, etc.</description>
 
 	<properties>
-		<wicket.version>1.4.13</wicket.version>
-		<jetty.version>6.1.25</jetty.version>
-    <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
-    <jvm.args.debug></jvm.args.debug> <!-- Used by the -Pdebug profile. -->
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<wicket.version>1.4.15</wicket.version>
+		<jetty.version>6.1.24</jetty.version>
+        <netbeans.hint.deploy.server>Tomcat60</netbeans.hint.deploy.server>
+        <jvm.args.debug></jvm.args.debug> <!-- Used by the -Pdebug profile. -->
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
 
