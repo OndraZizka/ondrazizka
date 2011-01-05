@@ -15,7 +15,24 @@ public class HomePage extends BasePageLayout3 {
 
 		public HomePage() {
 
-				add( new HledaniPanel("hledaniPanel") );
+				// Content
+
+				add( new HledaniPanel("hledaniPanel").setRenderBodyOnly(true) );
+
+				add( new AboutAtHomePagePanel("aboutPanel").setRenderBodyOnly(true) );
+				
+				add( new NejnovejsiZmeny("nejnovejsiZmeny").setRenderBodyOnly(true) );
+
+				add( new NejnovejsiZmeny("nejnovejsiClanek").setRenderBodyOnly(true) );
+
+				add( new StavServeruPanel("stavServeru").setRenderBodyOnly(true) );
+
+
+				// Sidebar
+
+				add( new PersonalMenuPanel("personalMenu").setRenderBodyOnly(true) );
+
+				add( new UnloggedBottomMenuPanel("unloggedBottomMenu").setRenderBodyOnly(true) );
 
 		}
 
