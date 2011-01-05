@@ -81,12 +81,13 @@ public class StackApp extends WebApplication
 
     // -- Wicket stuff -- //
 
+		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "home", HomePage.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "form", FormPage.class, null));
 		//mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "hbn", HibernateStatsPage.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "i18n", TranslatedPage.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "new", BaseLayout2Page.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "new2", BasePageLayout3.class, null));
-		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "newhp", cz.poh.web.newdesign.HomePage.class, null));
+		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "newhp", cz.poh.web.newdesign.pg.hp.HomePage.class, null));
 
   }
 
@@ -173,7 +174,7 @@ public class StackApp extends WebApplication
    * @see org.apache.wicket.Application#getHomePage()
    */
   public Class getHomePage() {
-    return HomePage.class;
+    return cz.poh.web.newdesign.pg.hp.HomePage.class;
   }
 
 
