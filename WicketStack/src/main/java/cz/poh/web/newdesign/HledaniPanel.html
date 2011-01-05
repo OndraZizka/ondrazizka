@@ -12,10 +12,14 @@
 		<div class="post hledani">
 			<h2 class="title">Hledání v Insolvenčním rejstříku</h2>
 			<p class="byline"><span>Často hledané:
-				<a href="#">crystalex</a> <small>1 výsledek</small> |
-				<a href="#">Bihári</a> <small>17 výsledků</small> |
-				<a href="#">testujme.cz</a> <small>1 výsledek</small>
-				</span></p>
+                    <span wicket:id="castoHledane">
+                        <a wicket:id="link" href="#"><i xwicket:id="label">crystalex</i></a> <small wicket:id="resCount">1 výsledek</small> |
+                        <wicket:remove>
+                        <a href="#">Bihári</a> <small>17 výsledků</small> |
+                        <a href="#">testujme.cz</a> <small>1 výsledek</small>
+                        </wicket:remove>
+                    </span>
+                </span></p>
 			<div class="entry">
 				<form method="get" action="." enctype="application/x-www-form-urlencoded">
 					<input name="dluznik" type="Text" style="width: 80%"/><input type="Submit" value="Hledat všude" style="width: 18%"/>

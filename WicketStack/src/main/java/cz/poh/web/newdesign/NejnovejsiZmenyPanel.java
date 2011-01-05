@@ -5,10 +5,10 @@ import org.apache.wicket.markup.html.panel.Panel;
  *
  * @author ondra
  */
-public final class NejnovejsiZmeny extends Panel
+public final class NejnovejsiZmenyPanel extends Panel
 {
 
-    public NejnovejsiZmeny( String id ) {
+    public NejnovejsiZmenyPanel( String id ) {
         super (id);
     }
 
