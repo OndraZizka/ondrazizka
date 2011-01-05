@@ -13,24 +13,25 @@
 			<li>
 				<h2>Insolvenční rejstřík</h2>
 				<ul>
-					<li><a href="#">Hlídání výskytu osoby</a></li>
-					<li><a href="#">Sledované spisy</a></li>
-					<li><a href="#">Ignorované spisy</a> <span class="novinka">novinka!</span></li>
+					<li><a href="#/hlidani">Hlídání výskytu osoby</a></li>
+					<li><a href="#/sledSpisy">Sledované spisy</a></li>
+					<li><a href="#/ignorSpisy">Ignorované spisy</a> <span class="novinka">novinka!</span></li>
 				</ul>
 			</li>
 			<li>
 				<h2>Váš účet</h2>
 				<ul>
-					<li><a href="#">Konto</a> <small>3115,- Kč, 311 dnů</small></li>
-					<li><a href="#">Úprava údajů</a></li>
-					<li><a href="#">Nastavení</a></li>
-					<li><a href="#">Odhlásit</a></li>
+                    <li><a href="#">Konto</a> <small><span wicket:id="konto">3115</span>,- Kč, <span wicket:id="kontoDnu">311</span> dnů</small></li>
+					<li><a href="#/profil">Úprava údajů</a></li>
+					<li><a href="#/nastaveni">Nastavení</a></li>
+					<li><a href="#/logout">Odhlásit</a></li>
 				</ul>
 			</li>
 			<li>
 				<h2>Rychlé odkazy</h2>
 				<ul>
-					<li>Vzor <a href="#">Novot*</a> <small>26 odpovídá</small></li>
+                    <li wicket:id="rychleOdkazy">Vzor <a wicket:id="link" href="#">Novot*</a> <small wicket:id="detail">26 odpovídá</small></li>
+                    <wicket:remove>
 					<li>Vzor <a href="#">Krachofest s.r.o</a> <small>0 odpovídá</small></li>
 					<li>Spis <a href="#">INS 666/2009</a> <small>Lakatoš</small></li>
 					<li>Spis <a href="#">INS 666/2009</a> <small>Blagoževičová</small></li>
@@ -38,6 +39,7 @@
 					<li>Město <a href="#">Dlužníkov</a> <small>1532 dlužníků</small></li>
 					<li>Město <a href="#">Neplatičov</a> <small>219 dlužníků</small></li>
 					<li>Ulice <a href="#">Cejl, Brno</a> <small>158 dlužníků</small></li>
+                    </wicket:remove>
 				</ul>
 			</li>
 		</ul>
