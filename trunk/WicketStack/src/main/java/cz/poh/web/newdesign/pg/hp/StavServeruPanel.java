@@ -1,5 +1,5 @@
 
-package cz.poh.web.newdesign;
+package cz.poh.web.newdesign.pg.hp;
 
 import org.apache.wicket.markup.html.panel.Panel;
 

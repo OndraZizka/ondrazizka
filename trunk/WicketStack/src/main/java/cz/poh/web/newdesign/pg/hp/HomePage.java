@@ -1,5 +1,10 @@
 
-package cz.poh.web.newdesign;
+package cz.poh.web.newdesign.pg.hp;
+
+import cz.poh.web.newdesign.BasePageLayout3;
+import cz.poh.web.newdesign.pn.HledaniPanel;
+import cz.poh.web.newdesign.pn.PersonalMenuPanel;
+import cz.poh.web.newdesign.pn.UnloggedBottomMenuPanel;
 
 
 /**

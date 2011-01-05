@@ -1,5 +1,5 @@
 
-package cz.poh.web.newdesign;
+package cz.poh.web.newdesign.pn;
 
 import antlr.StringUtils;
 import com.mysql.jdbc.EscapeTokenizer;
