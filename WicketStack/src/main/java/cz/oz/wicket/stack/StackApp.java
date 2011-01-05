@@ -8,6 +8,7 @@ import cz.oz.wicket.stack.pages.ir.BaseLayout2Page;
 import cz.oz.wicket.stack.pages.form.FormPage;
 //import cz.oz.wicket.stack.pages.hbn.HibernateStatsPage;
 import cz.oz.wicket.stack.pages.i18n.TranslatedPage;
+import cz.poh.web.newdesign.BasePageLayout3;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -77,12 +78,14 @@ public class StackApp extends WebApplication
     this.daoFactory = (DaoFactory) this.ac.getBean("daoFactory");
 
 
+
     // -- Wicket stuff -- //
 
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "form", FormPage.class, null));
 		//mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "hbn", HibernateStatsPage.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "i18n", TranslatedPage.class, null));
 		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "new", BaseLayout2Page.class, null));
+		mount( new BookmarkablePageRequestTargetUrlCodingStrategy( "new2", BasePageLayout3.class, null));
 
   }
 
