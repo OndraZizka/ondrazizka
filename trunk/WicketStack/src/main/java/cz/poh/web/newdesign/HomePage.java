@@ -21,9 +21,9 @@ public class HomePage extends BasePageLayout3 {
 
 				add( new AboutAtHomePagePanel("aboutPanel").setRenderBodyOnly(true) );
 				
-				add( new NejnovejsiZmeny("nejnovejsiZmeny").setRenderBodyOnly(true) );
+				add( new NejnovejsiZmenyPanel("nejnovejsiZmeny").setRenderBodyOnly(true) );
 
-				add( new NejnovejsiZmeny("nejnovejsiClanek").setRenderBodyOnly(true) );
+				add( new NejnovejsiClanekPanel("nejnovejsiClanek").setRenderBodyOnly(true) );
 
 				add( new StavServeruPanel("stavServeru").setRenderBodyOnly(true) );
 
