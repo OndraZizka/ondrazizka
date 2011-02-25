@@ -1,0 +1,21 @@
+
+
+1.2.0: Scrapers
+* Implemented reading and using XML configuration.
+* Implemented Scrapers concept to support different repos
+* Implemented bugzilla support
+* Refactored a bit
+* Logging done properly
+* Default / debugging configuration updated
+* Added -logProfile option which will look for log4j-<logProfile>.properties if set
+* Added -profile option which will look for JiraBotConfig-<profile>.xml if set
+
+
+1.0.09:
+* Changed cache timeout to 5 minutes
+* JBoss repo tracker updated to " - JBoss Issue Tracker"
+* Min JIRA prefix changed to 2, e.g. RF-123 needs this.
+
+
+1.0.08:
+Fixed JIRA issue ID bug when followed by a dot.
