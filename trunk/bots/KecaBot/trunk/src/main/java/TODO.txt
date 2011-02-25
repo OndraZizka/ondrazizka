@@ -1,0 +1,11 @@
+
+TODO:
+
+1) Reorganize caching - put it outside Repository parser.
+  DONE
+
+2) Implement repo scrapers for Jira, Jira 4.2+ and Bugzilla.
+  DONE
+
+3) Reorganize the data flow - separate cache, repository info, issue info and scrapers.
+  Almost done - switch to use it.

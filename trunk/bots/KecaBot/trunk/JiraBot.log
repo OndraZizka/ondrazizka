@@ -1,0 +1,6 @@
+14:36:42.836 INFO  [main] org.jboss.kecabot.TimeoutCache  New cache with timeout 1800000 ms.
+14:36:42.836 INFO  [main] org.jboss.kecabot.TimeoutCache  Scheduling expiry thread to run every 180000 ms.
+14:36:46.846 INFO  [main] org.jboss.kecabot.TimeoutCache  New cache with timeout 100 ms.
+14:36:46.846 INFO  [main] org.jboss.kecabot.TimeoutCache  Scheduling expiry thread to run every 5000 ms.
+14:36:51.846 DEBUG [pool-2-thread-1] org.jboss.kecabot.TimeoutCache  Checking if Foobar is stale.
+14:36:51.847 DEBUG [pool-2-thread-1] org.jboss.kecabot.TimeoutCache  Removing expired entry testKey: Foobar
