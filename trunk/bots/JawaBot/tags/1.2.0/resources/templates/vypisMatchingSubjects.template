@@ -1,0 +1,70 @@
+Výpis nalezených dlužníků
+=========================
+
+
+<@compress single_line=true>
+<#if shody?size = 0>
+Žádné odpovídající subjekty nebyly nalezeny
+<#if pravidla?size = 0>, protože nemáte uložená žádná pravidla</#if>.
+</#if></@compress>
+
+
+
+<#list shody as shoda>
+<@compress single_line=true>
+
+Osoba: ${shoda.jmeno}
+<#if shoda.ic??>, IČ: ${shoda.ic}</#if>
+<#if shoda.rc??>, RČ: ${shoda.rc}</#if>
+<#if shoda.nar??>, nar.: ${shoda.nar}</#if>
+<#if shoda.id_adresa??>
+; Adresa: 
+  <#if shoda.ulice??>${shoda.ulice}, </#if>
+  <#if shoda.psc??>${shoda.psc}  </#if>
+  <#if shoda.mesto??>${shoda.mesto}</#if>
+</#if>
+
+se vyskytuje ve spisu značky ${shoda.spis_znacka!"(neznámé)"};
+
+  Zachyceno pravidlem č. ${shoda.id_sled}
+   <#if shoda.sled_skupina??> ze skupiny ${shoda.sled_skupina}</#if>
+
+</@compress>
+
+  <#if shoda.udalosti??>
+  <#list shoda.udalosti as udalost>
+  <#nt>     Událost č. ${udalost.id} z ${udalost.cas} - ${udalost.typ_text}
+  </#list>
+  </#if>
+
+</#list>
+
+
+<#-- Pravidla -->
+
+Výpis pravidel
+==============
+
+<#if pravidla?size = 0>
+V databázi nemáte uložená žádná pravidla. Lze je přidat importem.
+</#if>
+
+<#list pravidla as pravidlo>
+<@compress single_line=true>
+
+Pravidlo č. ${pravidlo.id}<#if pravidlo.skupina??>, skupina ${pravidlo.skupina}</#if>:
+
+${pravidlo.subjekt.jmeno}<#if pravidlo.subjekt.ic??>, IČ: ${pravidlo.subjekt.ic}</#if>
+<#if pravidlo.subjekt.rc??>, RČ: ${pravidlo.subjekt.rc}</#if>
+<#if pravidlo.subjekt.nar??>, nar.: ${pravidlo.subjekt.nar}</#if>
+<#if pravidlo.subjekt.id_adresa??>
+; Adresa: 
+  <#if pravidlo.subjekt.ulice??>${pravidlo.subjekt.ulice}, </#if>
+  <#if pravidlo.subjekt.psc??>${pravidlo.subjekt.psc}  </#if>
+  <#if pravidlo.subjekt.mesto??>${pravidlo.subjekt.mesto}</#if>
+</#if>
+<#--
+ -->
+</@compress>
+
+</#list>
