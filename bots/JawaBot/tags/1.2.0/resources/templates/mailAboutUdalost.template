@@ -1,0 +1,78 @@
+<#--
+
+  Template pro single mail.
+
+    UdalostBean   udalost,
+    SpisBean      spis,
+    OsobaBean     dluznik,
+    List<SledovanySubjektBean> vzoryData,
+      vzoryData[0].subjekt: SubjektInfo, 
+    User          user
+
+-->
+Dobrý den,
+
+<@compress single_line=true>
+  systém Pohlídáme.cz zachytil událost Insolvenčního rejstříku
+  <#if vzoryData??>
+    na základě shody s vašimi vzory.
+  <#else>
+    ve spisu vámi sledované osoby.
+  </#if>
+</@compress>
+
+
+Událost č.:  ${udalost.id}, ${udalost.typText}, <#if udalost.oddil??>oddíl ${udalost.oddil}, </#if>pořadí ${udalost.poradi}
+Čas:         ${udalost.cas?datetime}
+Spis:        ${udalost.spisZnacka}
+             Založen ${spis.zalozeni?datetime}
+             <#if spis.stav??>Momentálně ve stavu ${spis.stav}.</#if>
+             Obsahuje ${spis.pohledavek} pohledávek.
+
+Dlužník:
+              <@compress single_line=true>
+${dluznik.jmeno}
+<#if dluznik.ic?has_content>, IČ: ${dluznik.ic}</#if>
+<#if dluznik.rc?has_content>, RČ: ${dluznik.rc}</#if>
+<#if dluznik.nar??>, nar.: ${dluznik.nar?date}</#if>
+<#if dluznik.id_adresa??>
+; Adresa:
+  <#if dluznik.ulice?has_content>${dluznik.ulice}, </#if>
+  <#if dluznik.psc?has_content>${dluznik.psc}  </#if>
+  <#if dluznik.mesto?has_content>${dluznik.mesto}</#if>
+</#if>
+              </@compress>
+
+<#-- isir_spisy: znacka, zalozeni, id_dluznik, id_spravce, stav, vyrizeno_typem, pohledavek -->
+
+<#if vzoryData??>
+Osoba se shoduje s těmito vzory:
+  <#list vzoryData as sledovanyVzor>
+
+  <@compress single_line=true>
+
+  <#if sledovanyVzor.subjekt.jmeno?has_content>${sledovanyVzor.subjekt.jmeno}</#if>
+  <#if sledovanyVzor.subjekt.ic?has_content>, IČ: ${sledovanyVzor.subjekt.ic}</#if>
+  <#if sledovanyVzor.subjekt.rc?has_content>, RČ: ${sledovanyVzor.subjekt.rc}</#if>
+  <#if sledovanyVzor.subjekt.nar?has_content>, nar.: ${sledovanyVzor.subjekt.narAsDate?date}</#if>
+  <#if sledovanyVzor.subjekt.id_adresa??>
+  ; Adresa:
+    <#if sledovanyVzor.subjekt.ulice?has_content>${sledovanyVzor.subjekt.ulice}, </#if>
+    <#if sledovanyVzor.subjekt.psc?has_content>${sledovanyVzor.subjekt.psc}  </#if>
+    <#if sledovanyVzor.subjekt.mesto?has_content>${sledovanyVzor.subjekt.mesto}</#if>
+  </#if>
+
+  </@compress>
+  </#list>
+
+</#if>
+
+Tuto zprávu automaticky vygeneroval systém Pohlídáme.cz podle vašich nastavení,
+která můžete upravit po přihlášení na webu http://www.pohlidame.cz .
+Jako uživatelské jméno použijte vaši e-mailovou adresu (${user.mail}).
+
+Pokud se chcete na cokoliv zeptat nebo nám něco sdělit,
+stačí odpovědět na tento mail, rádi se dozvíme vaše názory.
+
+S pozdravem,
+tým Pohlídáme.cz.

@@ -1,0 +1,78 @@
+<#--
+
+Template params:
+  User user
+  Map<String, List<UdalostiQueueItem>> mapSpisToUdalosti
+
+entity UdalostiQueueItem:
+
+	private UdalostiQueueItemPK id;
+	private Udalost udalost;
+	private User user;
+  private SledovanySubjekt detectedByVzor;
+  private boolean notify_mail;
+  private boolean notify_sms;
+
+-->
+
+Dobrý den,
+
+<@compress single_line=true>
+  systém Pohlídáme.cz zachytil události Insolvenčního Rejstříku u těchto hlídaných osob:
+</@compress>
+
+<#assign keys = mapSpisToUdalosti?keys>
+
+<#list keys as spisZnacka> 
+  <#assign itemsForSpis = mapSpisToUdalosti[spisZnacka]>
+  <#assign spis = itemsForSpis[0].udalost.spis>
+  <#assign dluznik = spis.dluznik>
+ * ${dluznik.jmeno}
+</#list>
+
+
+Podrobný výpis:
+
+<#list keys as spisZnacka> 
+  <#assign itemsForSpis = mapSpisToUdalosti[spisZnacka]>
+  <#assign spis = itemsForSpis[0].udalost.spis>
+  <#assign dluznik = spis.dluznik>
+        <@compress single_line=true>
+Spis:        ${spisZnacka}, založen ${spis.zalozeni?datetime}
+             <#if spis.stav??>, ve stavu ${spis.stav}</#if>
+             , ${spis.pohledavek} pohledávek.
+        </@compress>
+
+        <@compress single_line=true>
+Dlužník:
+${dluznik.jmeno}
+<#if dluznik.ic?has_content>, IČ: ${dluznik.ic}</#if>
+<#if dluznik.rc?has_content>, RČ: ${dluznik.rc}</#if>
+<#if dluznik.nar??>, nar.: ${dluznik.nar?date}</#if>
+<#if dluznik.id_adresa??>
+; Adresa:
+  <#if dluznik.ulice??>${dluznik.ulice}, </#if>
+  <#if dluznik.psc??>${dluznik.psc}  </#if>
+  <#if dluznik.mesto??>${dluznik.mesto}</#if>
+</#if>
+        </@compress>
+  
+  
+  <#list itemsForSpis as udalostQueueItem>
+    <#assign udalost = udalostQueueItem.udalost>  
+  Událost č.:  ${udalost.id}, ${udalost.typText}<#if udalost.oddil?has_content>, oddíl ${udalost.oddil}, pořadí ${udalost.poradi}</#if>
+  <#-- Čas:         ${udalost.cas?datetime}    JE TO String. -->
+  Čas:         ${udalost.cas}
+  </#list>
+  
+</#list>
+
+Tuto zprávu automaticky vygeneroval systém Pohlídáme.cz podle vašich nastavení,
+která můžete upravit po přihlášení na webu http://www.pohlidame.cz .
+Jako uživatelské jméno použijte vaši e-mailovou adresu (${user.mail}).
+
+Pokud se chcete na cokoliv zeptat nebo nám něco sdělit,
+stačí odpovědět na tento mail, rádi se dozvíme vaše názory.
+
+S pozdravem
+tým Pohlídáme.cz
