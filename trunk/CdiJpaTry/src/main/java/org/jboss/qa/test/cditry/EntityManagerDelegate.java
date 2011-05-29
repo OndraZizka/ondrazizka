@@ -1,4 +1,4 @@
-package org.jboss.qa.test.cditry2;
+package org.jboss.qa.test.cditry;
 //package de.laliluna.transactions;
 
 import javax.enterprise.context.ApplicationScoped;

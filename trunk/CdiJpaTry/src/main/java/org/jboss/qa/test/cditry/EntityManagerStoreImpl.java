@@ -1,5 +1,5 @@
 //package de.laliluna.transactions;
-package org.jboss.qa.test.cditry2;
+package org.jboss.qa.test.cditry;
 
 import org.jboss.weld.environment.se.events.ContainerInitialized;
 import org.slf4j.Logger;

@@ -1,6 +1,6 @@
 
 //package de.laliluna.transactions;
-package org.jboss.qa.test.cditry2;
+package org.jboss.qa.test.cditry;
 
 import javax.interceptor.InterceptorBinding;
 import java.lang.annotation.ElementType;
