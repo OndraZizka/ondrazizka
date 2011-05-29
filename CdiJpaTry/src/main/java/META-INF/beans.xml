@@ -8,12 +8,19 @@
 
            
 	<interceptors>
-		<class>org.jboss.qa.test.cditry2.TransactionInterceptor</class>
+		<class>org.jboss.qa.test.cditry.TransactionInterceptor</class>
 	</interceptors>
+    
+    <!-- For @ThreadScoped -->
+    <decorators>
+        <decorator>org.jboss.weld.environment.se.threading.RunnableDecorator</decorator>
+    </decorator>
 
+    <!--
     <weld:scan>
         <weld:include name="**"/>
         <weld:exclude name="org.jboss.qa.test.cditry.**"/>
     </weld:scan>
+    -->
 
 </beans>

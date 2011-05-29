@@ -1,4 +1,4 @@
-package org.jboss.qa.test.cditry2;
+package org.jboss.qa.test.cditry;
 
 import javax.persistence.EntityManager;
 
