@@ -4,9 +4,15 @@ TMP_DIR=`pwd`/tmp-data
 TMP_REPO=`pwd`/jawabot
 mkdir -p $TMP_DIR;
 
-if [ ! -d $TMP_REPO ] ; then mdkir -p $TMP_REPO; git init; fi;
-cd $TMP_REPO;
-if [ ! -d .git ] ; then echo "Must be run in a git repo dir."; $(exit 1); fi
+if [ ! -d $TMP_REPO ] ; then 
+  mkdir -p $TMP_REPO;
+  cd $TMP_REPO;
+  git init;
+else
+  cd $TMP_REPO;
+  if [ ! -d .git ] ; then echo "$TMP_REPO already exists, and is not a git repo dir."; $(exit 1); fi
+fi;
+
 
 
 ##  Get SVN URL.
