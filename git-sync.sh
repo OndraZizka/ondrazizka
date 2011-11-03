@@ -66,13 +66,14 @@ while read -r LINE ; do
   #echo "" > $TMP_DIR/comment.txt
   echo -n "[SVN "$REV"] " > $TMP_DIR/comment.txt
   svn log $SVN_URL -$REV | tail -n +4 | head -n -1 >> $TMP_DIR/comment.txt  # | tr -d '\n'
-  cat $TMP_DIR/comment.txt
 
-  ##  Before exporting, make sure to clean what is there already...
+  ##  Preserve .git, delete everything, check next rev, restore .git.
   mv $TMP_REPO/.git $TMP_DIR
   rm -rf $TMP_REPO/*
-  svn export --force -$REV $SVN_URL .
+  echo -n "##  Exporting from SVN - $REV - $";  cat $TMP_DIR/comment.txt
+  svn export -q --force -$REV $SVN_URL .
   mv $TMP_DIR/.git $TMP_REPO
+  echo "##  Adding $REV to Git repo...";
   git add *
   git commit -a --file $TMP_DIR/comment.txt --allow-empty
   REV_LAST=$REV_NUM;
